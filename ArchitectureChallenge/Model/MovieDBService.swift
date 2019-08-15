@@ -8,27 +8,59 @@
 
 import Foundation
 
-struct Movie {
-    let title : String
-    let description : String
-}
-
 class MovieDBService {
     
-    let movies = [
-        Movie(title: "Title1", description: "Desc1"),
-        Movie(title: "Title2", description: "Desc2"),
-        Movie(title: "Title3", description: "Desc3")
-    ]
+    // Como os metodos de requisicao sao assincronos, é necessário usar uma funcao callback para obter o retorno.
+    func getNowPlayingMovies(callBack: @escaping ([Movie]?, Error?) -> () ) {
     
-    func getMovie(title: String, callback: (Movie?) -> Void) {
-        
-        if let movie = movies.first(where: { movie in movie.title == title }) {
-            callback(movie)
-        } else {
-            callback(nil)
+        if let url = URL(string: "https://api.themoviedb.org/3/movie/now_playing?api_key=79bb37b9869aa0ed97dc7a23c93d0829&language=en-US&page=1"){
+            let task = URLSession.shared.dataTask(with: url) { (data, request, err) in
+                
+                if let error = err {
+                    callBack(nil, error)
+                } else if let dadosRetorno = data {
+                    let moviesResult = try! JSONDecoder().decode(Movies.self, from: dadosRetorno)
+                    let movies = moviesResult.results
+                        callBack(movies, nil)
+                }
+            }
+            task.resume()
         }
-        
     }
+    
+    func getPopularMovies(callBack: @escaping ([Movie]?, Error?) -> () ) {
+        
+        if let url = URL(string: "https://api.themoviedb.org/3/movie/popular?api_key=79bb37b9869aa0ed97dc7a23c93d0829&language=en-US&page=1"){
+            let task = URLSession.shared.dataTask(with: url) { (data, request, err) in
+                
+                if let error = err {
+                    callBack(nil, error)
+                } else if let dadosRetorno = data {
+                    let moviesResult = try! JSONDecoder().decode(Movies.self, from: dadosRetorno)
+                    let movies = moviesResult.results
+                    callBack(movies, nil)
+                }
+            }
+            task.resume()
+        }
+    }
+    
+    func getMovieDetails(movieId: Int, callBack: @escaping (MovieDetail?, Error?) -> () ) {
+        
+        if let url = URL(string: "https://api.themoviedb.org/3/movie/\(movieId)?api_key=79bb37b9869aa0ed97dc7a23c93d0829&language=en-US"){
+            let task = URLSession.shared.dataTask(with: url) { (data, request, err) in
+                
+                if let error = err {
+                    callBack(nil, error)
+                } else if let dadosRetorno = data {
+                    let movieResult = try! JSONDecoder().decode(MovieDetail.self, from: dadosRetorno)
+                    let movie = movieResult
+                    callBack(movie, nil)
+                }
+            }
+            task.resume()
+        }
+    }
+    
     
 }
