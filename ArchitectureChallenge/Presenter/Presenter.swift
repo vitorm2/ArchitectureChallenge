@@ -10,7 +10,7 @@ import Foundation
 
 protocol ViewDelegate {
     
-    func respondToViewController()
+    func setSelectedMovie(title: String)
     
 }
 
@@ -28,8 +28,14 @@ class Presenter : ViewDelegate {
     }
     
     // View Delegate
-    func respondToViewController() {
-        print(#function)
+    func setSelectedMovie(title: String) {
+        movieDBService.getMovie(title: title) { [weak self] movie in
+            
+            if let movie = movie {
+                self?.viewController?.setMovieDescription(desc: movie.description)
+            }
+            
+        }
     }
     
 }

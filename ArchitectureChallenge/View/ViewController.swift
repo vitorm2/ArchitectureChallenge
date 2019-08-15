@@ -9,11 +9,16 @@
 import UIKit
 
 class ViewController: UIViewController {
+    
+    var movie : String = "Title1"
+    var movieDesc : String = "none"
 
     override func viewDidLoad() {
         super.viewDidLoad()
     }
 
-
+    func setMovieDescription(desc: String) {
+        self.movieDesc = desc
+    }
 }
 
