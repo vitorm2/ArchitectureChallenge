@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct Request: Codable {
+struct Movies: Codable {
     var results: [Movie]
     var page: Int?
     var total_results: Int?
