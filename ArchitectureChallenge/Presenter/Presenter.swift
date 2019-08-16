@@ -10,15 +10,17 @@ import Foundation
 
 protocol ListViewDelegate: NSObjectProtocol  {
     
-    func displayNowPlaying(movies: [Movie])
     func segueMovieDetails(movie: MovieDetail)
-    
+    func setNowPlayingMovies(moviesData: [MovieViewData])
+    func setPopularMovies(moviesData: [MovieViewData])
 }
 
 class Presenter {
     
     private let movieDBService : MovieDBService
     weak private var listViewDelegate : ListViewDelegate?
+    
+    
     
     init(movieDBService: MovieDBService) {
         self.movieDBService = movieDBService
@@ -29,16 +31,40 @@ class Presenter {
     }
     
     
-    // Busca os filmes (através da classe de servico) e em seguida passa o resultado, através de um delegate, para a viewcontroller
-    func showNowPlayingMovies() {
+    // Busca os filmes (através da classe de servico), em seguida pega os filmes e converte para o a struct MovieViewData e através de um delegate passa coleção para a viewcontroller
+    func getNowPlayingMovies() {
         movieDBService.getNowPlayingMovies { (movies, error) in
-            self.listViewDelegate?.displayNowPlaying(movies: movies ?? [])
+            
+            var moviesData: [MovieViewData] = []
+            
+            for movie in movies! {
+                moviesData.append(MovieViewData(
+                    id: movie.id!,
+                    vote_average: movie.vote_average!,
+                    title: movie.title ?? "",
+                    poster_path: movie.poster_path ?? "",
+                    overview: movie.overview ?? ""))
+            }
+            
+            self.listViewDelegate?.setNowPlayingMovies(moviesData: moviesData)
         }
     }
     
-    func showPopularMovies() {
+    func getPopularMovies() {
         movieDBService.getPopularMovies { (movies, error) in
-            self.listViewDelegate?.displayNowPlaying(movies: movies ?? [])
+            
+            var moviesData: [MovieViewData] = []
+            
+            for movie in movies! {
+                moviesData.append(MovieViewData(
+                    id: movie.id!,
+                    vote_average: movie.vote_average!,
+                    title: movie.title ?? "",
+                    poster_path: movie.poster_path ?? "",
+                    overview: movie.overview ?? ""))
+            }
+            
+            self.listViewDelegate?.setPopularMovies(moviesData: moviesData)
         }
     }
     
@@ -47,9 +73,25 @@ class Presenter {
             if let movie = movie {
                 self.listViewDelegate?.segueMovieDetails(movie: movie)
             }
-            
         }
     }
-
     
+    func getMovieImage(imagePath: String, completion: @escaping (Data?) -> Void) {
+        movieDBService.getImageData(imagePath: imagePath, completion: {(data) in
+            if let data = data {
+                completion(data)
+            }
+        })
+    }
+    
+    
+    
+}
+
+struct MovieViewData {
+    let id: Int
+    let vote_average: Double
+    let title: String
+    let poster_path: String
+    let overview: String
 }
