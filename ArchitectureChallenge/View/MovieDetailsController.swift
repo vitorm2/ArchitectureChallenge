@@ -8,11 +8,9 @@
 
 import UIKit
 
-class MovieDetailsController: UIViewController, MovieDetailsDelegate {
+class MovieDetailsController: UIViewController {
     
     var movie: MovieDetail?
-    
-    private let movieDetailsPresenter = MovieDetailsPresenter(movieDBService: MovieDBService())
     
     @IBOutlet weak var movieImage: UIImageView!
     @IBOutlet weak var movieTitle: UILabel!
@@ -22,7 +20,6 @@ class MovieDetailsController: UIViewController, MovieDetailsDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        movieDetailsPresenter.setViewDelegate(movieDetailsDelegate: self)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -33,11 +30,12 @@ class MovieDetailsController: UIViewController, MovieDetailsDelegate {
             movieVotesNumber.text = String(vote_average)
         }
         
-        movieDetailsPresenter.getMovieImage(imagePath: movie?.poster_path ?? "") { (data) in
-            DispatchQueue.main.async {
-                self.movieImage.image = UIImage(data: data!)
-            }
-        }
+        let imageURL = base_url + (movie?.poster_path)!
+        let url = URL(string: imageURL)
+        
+        movieImage.sd_setImage(with: url, placeholderImage: nil)
+        
+        movieImage.layer.cornerRadius = 10.0
     }
     
     

@@ -9,10 +9,11 @@
 import Foundation
 
 protocol ListViewDelegate: NSObjectProtocol  {
-    
+
     func segueMovieDetails(movie: MovieDetail)
     func setNowPlayingMovies(moviesData: [MovieViewData])
     func setPopularMovies(moviesData: [MovieViewData])
+    
 }
 
 class Presenter {
@@ -20,16 +21,16 @@ class Presenter {
     private let movieDBService : MovieDBService
     weak private var listViewDelegate : ListViewDelegate?
     
-    
-    
     init(movieDBService: MovieDBService) {
         self.movieDBService = movieDBService
     }
     
+    
+    
+    
     func setViewDelegate(listViewDelegate: ListViewDelegate) {
         self.listViewDelegate = listViewDelegate
     }
-    
     
     // Busca os filmes (através da classe de servico), em seguida pega os filmes e converte para o a struct MovieViewData e através de um delegate passa coleção para a viewcontroller
     func getNowPlayingMovies() {
@@ -75,18 +76,8 @@ class Presenter {
             }
         }
     }
-    
-    func getMovieImage(imagePath: String, completion: @escaping (Data?) -> Void) {
-        movieDBService.getImageData(imagePath: imagePath, completion: {(data) in
-            if let data = data {
-                completion(data)
-            }
-        })
-    }
-    
-    
-    
 }
+
 
 struct MovieViewData {
     let id: Int

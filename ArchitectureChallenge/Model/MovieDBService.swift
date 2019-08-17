@@ -61,19 +61,4 @@ class MovieDBService {
             task.resume()
         }
     }
-    
-    func getImageData(imagePath: String, completion: @escaping (Data?) -> Void) {
-        let base_url: String = "https://image.tmdb.org/t/p/w500"
-        let final_url: String = base_url + imagePath
-        
-        // Varivel auxiliar para permitir apenas passar a imagem quando a URL antes da requisição for igual a URL depois da requisição
-        
-        let urlMain = URL(string: final_url)
-        DispatchQueue.global(qos: .background).async {
-            if let data = try? Data(contentsOf: urlMain!) {
-                completion(data)
-            } else { completion(nil) }
-        }
-    }
-    
 }
