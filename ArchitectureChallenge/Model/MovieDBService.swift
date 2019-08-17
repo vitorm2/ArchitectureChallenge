@@ -67,14 +67,11 @@ class MovieDBService {
         let final_url: String = base_url + imagePath
         
         // Varivel auxiliar para permitir apenas passar a imagem quando a URL antes da requisição for igual a URL depois da requisição
-        let imageUrlString: String = final_url
         
         let urlMain = URL(string: final_url)
         DispatchQueue.global(qos: .background).async {
             if let data = try? Data(contentsOf: urlMain!) {
-                if imageUrlString == final_url {
-                    completion(data)
-                }
+                completion(data)
             } else { completion(nil) }
         }
     }

@@ -118,14 +118,12 @@ extension ViewController : UITableViewDelegate, UITableViewDataSource {
             
         case 1 :
             
-            if  let cell = tableView.dequeueReusableCell(withIdentifier: "popularMoviesCell") as? PopularMoviesTableViewCell {
-                let movie = popular_moviesToDisplay[indexPath.row]
-                cell.movieTitle.text = movie.title
-                cell.voteAverage.text = String(movie.vote_average ?? 0.0)
-                return cell
-            }
+            let cell = tableView.dequeueReusableCell(withIdentifier: "popularMoviesCell") as! PopularMoviesTableViewCell 
+            let movie = popular_moviesToDisplay[indexPath.row]
+            cell.movieTitle.text = movie.title
+            cell.voteAverage.text = String(movie.vote_average)
+            return cell
             
-            return UITableViewCell()
             
         default : fatalError("There should be no more sections")
             
@@ -160,6 +158,7 @@ extension ViewController : UICollectionViewDelegate, UICollectionViewDataSource 
             return cell
         }
         
+        
         listViewPresenter.getMovieImage(imagePath: nowPlaying_moviesToDisplay[indexPath.row].poster_path) { (data) in
             DispatchQueue.main.async {
                 let imageToCache = UIImage(data: data!)
@@ -174,11 +173,11 @@ extension ViewController : UICollectionViewDelegate, UICollectionViewDataSource 
         return cell
     }
     
-    //    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-    //
-    //        // Diz para o presenter pegar os detalhes de um filme de acordo com o id passado
-    //        listViewPresenter.showMovieDetails(movieId: movies?[indexPath.row].id ?? 0)
-    //    }
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
+        // Diz para o presenter pegar os detalhes de um filme de acordo com o id passado
+        listViewPresenter.showMovieDetails(movieId: nowPlaying_moviesToDisplay[indexPath.row].id)
+    }
     
     
     
