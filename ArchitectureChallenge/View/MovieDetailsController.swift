@@ -12,8 +12,11 @@ class MovieDetailsController: UIViewController {
     
     var movie: MovieDetail?
     
+    @IBOutlet weak var movieImage: UIImageView!
     @IBOutlet weak var movieTitle: UILabel!
     @IBOutlet weak var movieGenres: UILabel!
+    @IBOutlet weak var movieOverview: UITextView!
+    @IBOutlet weak var movieVotesNumber: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,6 +25,17 @@ class MovieDetailsController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         movieTitle.text = movie?.title
         movieGenres.text = getMovieGenresString(genres: movie?.genres ?? [])
+        movieOverview.text = movie?.overview
+        if let vote_average = movie?.vote_average {
+            movieVotesNumber.text = String(vote_average)
+        }
+        
+        let imageURL = base_url + (movie?.poster_path)!
+        let url = URL(string: imageURL)
+        
+        movieImage.sd_setImage(with: url, placeholderImage: nil)
+        
+        movieImage.layer.cornerRadius = 10.0
     }
     
     
@@ -33,6 +47,6 @@ class MovieDetailsController: UIViewController {
             return result + item.name! + aux
         })
     }
-
-
+    
+    
 }

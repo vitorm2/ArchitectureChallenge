@@ -7,6 +7,10 @@
 //
 
 import UIKit
+import SDWebImage
+
+
+public var base_url: String = "https://image.tmdb.org/t/p/w500"
 
 class ViewController: UIViewController, ListViewDelegate {
     
@@ -14,8 +18,6 @@ class ViewController: UIViewController, ListViewDelegate {
     
     var nowPlaying_moviesToDisplay = [MovieViewData]()
     var popular_moviesToDisplay = [MovieViewData]()
-    
-    let imageCache = NSCache<AnyObject, AnyObject>()
     
     private let listViewPresenter = Presenter(movieDBService: MovieDBService())
     
@@ -58,14 +60,12 @@ class ViewController: UIViewController, ListViewDelegate {
         }
     }
     
-    
     // O presenter retorna para a funcao o Objeto filme detalhado
     func segueMovieDetails(movie: MovieDetail) {
         DispatchQueue.main.async {
             self.performSegue(withIdentifier: "movieDetailsSegue", sender: movie)
         }
     }
-    
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let movie = sender as? MovieDetail {
@@ -118,14 +118,12 @@ extension ViewController : UITableViewDelegate, UITableViewDataSource {
             
         case 1 :
             
-            if  let cell = tableView.dequeueReusableCell(withIdentifier: "popularMoviesCell") as? PopularMoviesTableViewCell {
-                let movie = popular_moviesToDisplay[indexPath.row]
-                cell.movieTitle.text = movie.title
-                cell.voteAverage.text = String(movie.vote_average ?? 0.0)
-                return cell
-            }
+            let cell = tableView.dequeueReusableCell(withIdentifier: "popularMoviesCell") as! PopularMoviesTableViewCell 
+            let movie = popular_moviesToDisplay[indexPath.row]
+            cell.movieTitle.text = movie.title
+            cell.voteAverage.text = String(movie.vote_average)
+            return cell
             
-            return UITableViewCell()
             
         default : fatalError("There should be no more sections")
             
@@ -153,35 +151,20 @@ extension ViewController : UICollectionViewDelegate, UICollectionViewDataSource 
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "nowPlayingCell", for: indexPath) as! NowPlayingCollectionViewCell
         cell.movieTitleLabel.text = nowPlaying_moviesToDisplay[indexPath.row].title
-        cell.moviePosterImageView.image = nil
         
-        if let imageFromCache = imageCache.object(forKey: nowPlaying_moviesToDisplay[indexPath.row].poster_path as AnyObject) as? UIImage {
-            cell.moviePosterImageView.image = imageFromCache
-            return cell
-        }
-        
-        listViewPresenter.getMovieImage(imagePath: nowPlaying_moviesToDisplay[indexPath.row].poster_path) { (data) in
-            DispatchQueue.main.async {
-                let imageToCache = UIImage(data: data!)
-                
-                // Adiciona a UIImage na cache ao scrollar a collection para não gastar recurso do usuário
-                self.imageCache.setObject(imageToCache!, forKey: self.nowPlaying_moviesToDisplay[indexPath.row].poster_path as AnyObject)
-                
-                cell.moviePosterImageView.image = imageToCache
-            }
-        }
+        let imageURL = base_url + nowPlaying_moviesToDisplay[indexPath.row].poster_path
+        let url = URL(string: imageURL)
+
+        cell.moviePosterImageView?.sd_setImage(with: url, placeholderImage: nil)
         
         return cell
     }
     
-    //    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-    //
-    //        // Diz para o presenter pegar os detalhes de um filme de acordo com o id passado
-    //        listViewPresenter.showMovieDetails(movieId: movies?[indexPath.row].id ?? 0)
-    //    }
-    
-    
-    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
+        // Diz para o presenter pegar os detalhes de um filme de acordo com o id passado
+        listViewPresenter.showMovieDetails(movieId: nowPlaying_moviesToDisplay[indexPath.row].id)
+    }
 }
 
 
