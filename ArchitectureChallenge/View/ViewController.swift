@@ -70,10 +70,16 @@ class ViewController: UIViewController, ListViewDelegate {
         }
     }
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?){
         if let movie = sender as? MovieDetail {
             if let nextViewController = segue.destination as? MovieDetailsController {
                 nextViewController.movie = movie
+            }
+        }
+        if let movies = sender as? [MovieViewData] {
+            if let nextViewController = segue.destination as?
+                SeeAllController {
+//                nextViewController.nowPlaying_moviesToDisplay = movies
             }
         }
     }
@@ -169,13 +175,15 @@ extension ViewController : UICollectionViewDelegate, UICollectionViewDataSource 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "nowPlayingCell", for: indexPath) as! NowPlayingCollectionViewCell
-        cell.movieTitleLabel.text = nowPlaying_moviesToDisplay[indexPath.row].title
+        
+        cell.movieComponent.movieTitle.text = nowPlaying_moviesToDisplay[indexPath.row].title
+        cell.movieComponent.movieVoteAverage.text = String(nowPlaying_moviesToDisplay[indexPath.row].vote_average)
         
         let imageURL = base_url + nowPlaying_moviesToDisplay[indexPath.row].poster_path
         let url = URL(string: imageURL)
 
-        cell.moviePosterImageView?.sd_setImage(with: url, placeholderImage: nil)
-        
+        cell.movieComponent.movieImage?.sd_setImage(with: url, placeholderImage: nil)
+    
         return cell
     }
     
