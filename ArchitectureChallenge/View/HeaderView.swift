@@ -8,26 +8,30 @@
 
 import UIKit
 
-class HeaderView : UIView {
+class HeaderView : UITableViewHeaderFooterView {
     
-    @IBOutlet var contentView: UIView!
     @IBOutlet weak var headerTitle: UILabel!
     @IBOutlet weak var actionButton: UIButton!
     
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        xibInit()
-    }
+//    override init(frame: CGRect) {
+//        super.init(frame: frame)
+//        xibInit()
+//    }
     
-    required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-        xibInit()
-    }
+//    required init?(coder aDecoder: NSCoder) {
+//        super.init(coder: aDecoder)
+//        xibInit()
+//    }
     
-    func xibInit() {
-        
-        Bundle.main.loadNibNamed("HeaderView", owner: self, options: nil)
-        
-    }
+//    func xibInit() {
+//        
+//        Bundle.main.loadNibNamed("HeaderView", owner: self, options: nil)
+//        addSubview(contentView)
+//        // self.backgroundColor = .red
+//        // self.contentView.backgroundColor = .cyan
+//        self.contentView.bounds = self.bounds
+//        self.contentView.autoresizingMask = [.flexibleHeight, .flexibleWidth]
+//        
+//    }
     
 }

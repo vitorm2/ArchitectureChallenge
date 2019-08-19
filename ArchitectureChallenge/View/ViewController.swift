@@ -9,7 +9,6 @@
 import UIKit
 import SDWebImage
 
-
 public var base_url: String = "https://image.tmdb.org/t/p/w500"
 
 class ViewController: UIViewController, ListViewDelegate {
@@ -34,6 +33,10 @@ class ViewController: UIViewController, ListViewDelegate {
         listViewPresenter.getPopularMovies()
         
         setupNavBar()
+        
+        let headerXib = UINib(nibName: "HeaderView", bundle: nil)
+        mainTableView.register(headerXib, forHeaderFooterViewReuseIdentifier: "HeaderView")
+        
     }
     
     // Coloca título grande e Search Bar na Navigation Bar
@@ -138,11 +141,27 @@ extension ViewController : UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        switch section {
-        case 0 : return HeaderView()
-        case 1 : return HeaderView()
-        default : fatalError("There should be no more sections")
-        }
+
+        guard let headerView = tableView.dequeueReusableHeaderFooterView(withIdentifier: "HeaderView") as? HeaderView
+        else { return nil }
+
+                switch section {
+                case 0 :
+                    headerView.headerTitle.text = "Now Playing"
+                    headerView.actionButton.setTitle("See all", for: .normal)
+                case 1 :
+                    headerView.headerTitle.text = "Popular Movies"
+                    //headerView.actionButton.isHidden = true
+                    headerView.actionButton.setTitle("", for: .normal)
+                default : fatalError("There should be no more sections")
+                }
+        
+        return headerView
+
+    }
+    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 50
     }
     
 }
@@ -169,7 +188,6 @@ extension ViewController : UICollectionViewDelegate, UICollectionViewDataSource 
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        
         // Diz para o presenter pegar os detalhes de um filme de acordo com o id passado
         listViewPresenter.showMovieDetails(movieId: nowPlaying_moviesToDisplay[indexPath.row].id)
     }
