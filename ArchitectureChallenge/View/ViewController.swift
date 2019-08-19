@@ -79,7 +79,7 @@ class ViewController: UIViewController, ListViewDelegate {
         if let movies = sender as? [MovieViewData] {
             if let nextViewController = segue.destination as?
                 SeeAllController {
-//                nextViewController.nowPlaying_moviesToDisplay = movies
+                nextViewController.nowPlaying_moviesToDisplay = movies
             }
         }
     }
@@ -183,7 +183,6 @@ extension ViewController : UICollectionViewDelegate, UICollectionViewDataSource 
         let url = URL(string: imageURL)
 
         cell.movieComponent.movieImage?.sd_setImage(with: url, placeholderImage: nil)
-    
         return cell
     }
     

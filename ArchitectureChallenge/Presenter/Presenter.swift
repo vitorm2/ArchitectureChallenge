@@ -13,7 +13,6 @@ protocol ListViewDelegate: NSObjectProtocol  {
     func segueMovieDetails(movie: MovieDetail)
     func setNowPlayingMovies(moviesData: [MovieViewData])
     func setPopularMovies(moviesData: [MovieViewData])
-    
 }
 
 class Presenter {

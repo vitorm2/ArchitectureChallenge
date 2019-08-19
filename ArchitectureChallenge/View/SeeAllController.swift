@@ -7,25 +7,36 @@
 
 import UIKit
 
-class SeeAllController: UIViewController {
-
-    //var nowPlaying_moviesToDisplay = [MovieViewData]()
+class SeeAllController: UIViewController{
+    
+   var nowPlaying_moviesToDisplay = [MovieViewData]()
+    @IBOutlet var nowPlayingCollectionView: UICollectionView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        nowPlayingCollectionView.delegate = self
+        nowPlayingCollectionView.dataSource = self
+    }
+}
 
-        // Do any additional setup after loading the view.
+extension SeeAllController: UICollectionViewDelegate, UICollectionViewDataSource {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return nowPlaying_moviesToDisplay.count
     }
     
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "nowPlayingCell2", for: indexPath) as!
+        NowPlayingCollectionViewCell
+        
+        cell.movieComponent.movieTitle.text = nowPlaying_moviesToDisplay[indexPath.row].title
+        cell.movieComponent.movieVoteAverage.text = String(nowPlaying_moviesToDisplay[indexPath.row].vote_average)
 
-    /*
-    // MARK: - Navigation
+        let imageURL = base_url + nowPlaying_moviesToDisplay[indexPath.row].poster_path
+        let url = URL(string: imageURL)
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+        cell.movieComponent.movieImage?.sd_setImage(with: url, placeholderImage: nil)
+        
+        return cell
     }
-    */
-
 }

@@ -109,7 +109,6 @@
 		C95159284D01FC74610C6876C09AC4BB /* SDDiskCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 43D6F04C5EC7042AADA84FC8574CAA68 /* SDDiskCache.m */; };
 		CC1604C3F20786AC5AA5AF093F15E1FC /* UIImage+MemoryCacheCost.h in Headers */ = {isa = PBXBuildFile; fileRef = 0ED0CF76F454AE8344C350DE8E060CD6 /* UIImage+MemoryCacheCost.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		CCB782AA406A6CD0FD643056884ABC0D /* SDWebImagePrefetcher.h in Headers */ = {isa = PBXBuildFile; fileRef = 0B960EAD9B6F99B37EFE1ABA0C75EB31 /* SDWebImagePrefetcher.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		CFB6C179230AD1CC0016B332 /* SeeAllController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFB6C178230AD1CC0016B332 /* SeeAllController.swift */; };
 		CFDB36A0BA44D57DECC050C705DDE2B9 /* SDWebImageOperation.h in Headers */ = {isa = PBXBuildFile; fileRef = 0FB70EE5F8D5BCBA9909168CC49113C8 /* SDWebImageOperation.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D52AEDEF55A78B72E1E2E592E4208B4F /* SDAnimatedImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 19302FD1C0B8C6275671261BC82DEDE2 /* SDAnimatedImageView.m */; };
 		D558D0C5D8A91157C7C8DFBAB9E152F6 /* UIImageView+WebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 5647D5945AC82E87318AD6E5C3CE0308 /* UIImageView+WebCache.m */; };
@@ -256,7 +255,6 @@
 		C9912E0D71F2DED33A1DEC64B18DBF3B /* SDWebImageDownloader.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SDWebImageDownloader.h; path = SDWebImage/SDWebImageDownloader.h; sourceTree = "<group>"; };
 		C9D1FC4BFD2451EE9C45A1385A8B7F54 /* SDImageCachesManagerOperation.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SDImageCachesManagerOperation.h; path = SDWebImage/Private/SDImageCachesManagerOperation.h; sourceTree = "<group>"; };
 		CD567A67A4599D5F16C27DCFCF5061A3 /* Pods-ArchitectureChallenge-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-ArchitectureChallenge-umbrella.h"; sourceTree = "<group>"; };
-		CFB6C178230AD1CC0016B332 /* SeeAllController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SeeAllController.swift; path = ../ArchitectureChallenge/View/SeeAllController.swift; sourceTree = "<group>"; };
 		D2A22EDECBB53BDBB4BC52240B87036C /* UIColor+HexString.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIColor+HexString.h"; path = "SDWebImage/Private/UIColor+HexString.h"; sourceTree = "<group>"; };
 		D2A3C7CCF0970C4C234E82BFFA579FE7 /* UIImageView+HighlightedWebCache.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UIImageView+HighlightedWebCache.m"; path = "SDWebImage/UIImageView+HighlightedWebCache.m"; sourceTree = "<group>"; };
 		D2A8F675452230FD7CF771059B0DC911 /* SDWebImageError.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SDWebImageError.h; path = SDWebImage/SDWebImageError.h; sourceTree = "<group>"; };
@@ -489,7 +487,6 @@
 		CF1408CF629C7361332E53B88F7BD30C = {
 			isa = PBXGroup;
 			children = (
-				CFB6C178230AD1CC0016B332 /* SeeAllController.swift */,
 				9D940727FF8FB9C785EB98E56350EF41 /* Podfile */,
 				1628BF05B4CAFDCC3549A101F5A10A17 /* Frameworks */,
 				62B72C34195D25016CCD778E716479FF /* Pods */,
@@ -751,7 +748,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				941E9CC802555B94C1B2D906E92A2755 /* Pods-ArchitectureChallenge-dummy.m in Sources */,
-				CFB6C179230AD1CC0016B332 /* SeeAllController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -126,7 +126,7 @@
                     <connections>
                         <outlet property="mainTableView" destination="oFV-gr-yrw" id="AaV-n1-ruT"/>
                         <segue destination="3fR-Uw-8ay" kind="show" identifier="movieDetailsSegue" id="JyK-oS-jJl"/>
-                        <segue destination="bje-gE-E6c" kind="show" id="DdX-DL-BDL"/>
+                        <segue destination="bje-gE-E6c" kind="show" identifier="segueSeeAll" id="DdX-DL-BDL"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="P8S-Fy-fSg" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -158,13 +158,71 @@
                     <view key="view" contentMode="scaleToFill" id="w68-bY-8i1">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="MFd-Zz-gJ3">
+                                <rect key="frame" x="23" y="142" width="368" height="697"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="697" id="t9v-8J-4ft"/>
+                                </constraints>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="xSw-Yf-C89">
+                                    <size key="itemSize" width="152" height="229"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="nowPlayingCell2" id="sLY-uc-iA3" customClass="NowPlayingCollectionViewCell" customModule="ArchitectureChallenge" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="152" height="229"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
+                                            <rect key="frame" x="0.0" y="0.0" width="152" height="229"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Lg7-jr-XcN" customClass="MovieComponent" customModule="ArchitectureChallenge" customModuleProvider="target">
+                                                    <rect key="frame" x="0.0" y="0.0" width="152" height="229"/>
+                                                </view>
+                                            </subviews>
+                                        </view>
+                                        <constraints>
+                                            <constraint firstAttribute="trailing" secondItem="Lg7-jr-XcN" secondAttribute="trailing" id="BpL-2W-OLM"/>
+                                            <constraint firstAttribute="bottom" secondItem="Lg7-jr-XcN" secondAttribute="bottom" id="XFI-9C-RQw"/>
+                                            <constraint firstItem="Lg7-jr-XcN" firstAttribute="top" secondItem="sLY-uc-iA3" secondAttribute="top" id="f1x-Wb-8AE"/>
+                                            <constraint firstItem="Lg7-jr-XcN" firstAttribute="leading" secondItem="sLY-uc-iA3" secondAttribute="leading" id="k34-Fc-Zgu"/>
+                                        </constraints>
+                                        <connections>
+                                            <outlet property="movieComponent" destination="Lg7-jr-XcN" id="Bk8-Ew-qMV"/>
+                                        </connections>
+                                    </collectionViewCell>
+                                </cells>
+                            </collectionView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Showing 20 results" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0DN-B2-Thn">
+                                <rect key="frame" x="23" y="108" width="137" height="18"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="18" id="BWR-aN-KYD"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="7hE-jx-zyP" firstAttribute="bottom" secondItem="MFd-Zz-gJ3" secondAttribute="bottom" constant="23" id="1ni-It-tVE"/>
+                            <constraint firstItem="0DN-B2-Thn" firstAttribute="leading" secondItem="7hE-jx-zyP" secondAttribute="leading" constant="23" id="KhZ-wm-ztP"/>
+                            <constraint firstItem="0DN-B2-Thn" firstAttribute="top" secondItem="7hE-jx-zyP" secondAttribute="top" constant="20" id="PNf-6D-MgU"/>
+                            <constraint firstItem="MFd-Zz-gJ3" firstAttribute="leading" secondItem="7hE-jx-zyP" secondAttribute="leading" constant="23" id="mYl-9r-W5I"/>
+                            <constraint firstItem="7hE-jx-zyP" firstAttribute="trailing" secondItem="MFd-Zz-gJ3" secondAttribute="trailing" constant="23" id="wQW-pX-83Q"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="7hE-jx-zyP"/>
                     </view>
+                    <connections>
+                        <outlet property="nowPlayingCollectionView" destination="MFd-Zz-gJ3" id="AMW-qT-hN2"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="spj-GT-tUy" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1045" y="-1369"/>
+            <point key="canvasLocation" x="1044.9275362318842" y="-1369.4196428571429"/>
         </scene>
         <!--Movie Details-->
         <scene sceneID="LWR-3L-HPH">
@@ -183,6 +241,11 @@
                                             <constraint firstAttribute="width" constant="128" id="PeV-BY-87R"/>
                                             <constraint firstAttribute="height" constant="194" id="u2a-dk-P6C"/>
                                         </constraints>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                <real key="value" value="10"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
                                     </imageView>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="tbC-wm-AyT">
                                         <rect key="frame" x="163" y="117" width="223" height="95"/>

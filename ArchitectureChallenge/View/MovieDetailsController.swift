@@ -34,8 +34,6 @@ class MovieDetailsController: UIViewController {
         let url = URL(string: imageURL)
         
         movieImage.sd_setImage(with: url, placeholderImage: nil)
-        
-        movieImage.layer.cornerRadius = 10.0
     }
     
     
