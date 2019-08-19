@@ -37,6 +37,8 @@ class ViewController: UIViewController, ListViewDelegate {
         let headerXib = UINib(nibName: "HeaderView", bundle: nil)
         mainTableView.register(headerXib, forHeaderFooterViewReuseIdentifier: "HeaderView")
         
+        mainTableView.separatorStyle = .none
+        
     }
     
     // Coloca título grande e Search Bar na Navigation Bar
@@ -127,12 +129,23 @@ extension ViewController : UITableViewDelegate, UITableViewDataSource {
             
         case 1 :
             
-            let cell = tableView.dequeueReusableCell(withIdentifier: "popularMoviesCell") as! PopularMoviesTableViewCell 
-            let movie = popular_moviesToDisplay[indexPath.row]
-            cell.movieTitle.text = movie.title
-            cell.voteAverage.text = String(movie.vote_average)
-            return cell
+            let cell = tableView.dequeueReusableCell(withIdentifier: "popularMoviesCell") as! PopularMoviesTableViewCell
             
+            let movie = popular_moviesToDisplay[indexPath.row]
+            
+            let imageURL = base_url + popular_moviesToDisplay[indexPath.row].poster_path
+            let url = URL(string: imageURL)
+            
+            cell.moviePoster.sd_setImage(with: url, placeholderImage: nil)
+            cell.movieTitle.text = movie.title
+            
+            cell.movieDescription.text = movie.overview
+            cell.movieDescription.lineBreakMode = .byTruncatingTail
+            cell.movieDescription.numberOfLines = 0
+            
+            cell.voteAverage.text = String(movie.vote_average)
+            
+            return cell
             
         default : fatalError("There should be no more sections")
             
@@ -149,10 +162,10 @@ extension ViewController : UITableViewDelegate, UITableViewDataSource {
                 case 0 :
                     headerView.headerTitle.text = "Now Playing"
                     headerView.actionButton.setTitle("See all", for: .normal)
+                    headerView.actionButton.isHidden = false
                 case 1 :
                     headerView.headerTitle.text = "Popular Movies"
-                    //headerView.actionButton.isHidden = true
-                    headerView.actionButton.setTitle("", for: .normal)
+                    headerView.actionButton.isHidden = true
                 default : fatalError("There should be no more sections")
                 }
         
@@ -161,7 +174,10 @@ extension ViewController : UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 50
+        guard let headerView = tableView.dequeueReusableHeaderFooterView(withIdentifier: "HeaderView") as? HeaderView
+        else { return 0.0 }
+        
+        return headerView.bounds.height
     }
     
 }
@@ -183,6 +199,7 @@ extension ViewController : UICollectionViewDelegate, UICollectionViewDataSource 
         let url = URL(string: imageURL)
 
         cell.movieComponent.movieImage?.sd_setImage(with: url, placeholderImage: nil)
+
         return cell
     }
     
