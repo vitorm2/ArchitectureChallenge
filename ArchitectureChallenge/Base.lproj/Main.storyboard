@@ -44,35 +44,35 @@
                                                         <rect key="frame" x="0.0" y="0.0" width="100" height="200"/>
                                                         <autoresizingMask key="autoresizingMask"/>
                                                         <subviews>
-                                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="BQI-FK-Por">
-                                                                <rect key="frame" x="0.0" y="0.0" width="100" height="168"/>
-                                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                            </imageView>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Movie Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iCo-2h-Cyt">
-                                                                <rect key="frame" x="0.0" y="167" width="71" height="17"/>
-                                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                                <nil key="textColor"/>
-                                                                <nil key="highlightedColor"/>
-                                                            </label>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Vote Average" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MPR-ZL-yaf">
-                                                                <rect key="frame" x="0.0" y="182" width="75" height="15"/>
-                                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                                                <nil key="textColor"/>
-                                                                <nil key="highlightedColor"/>
-                                                            </label>
+                                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IOg-lp-WBG" customClass="MovieComponent" customModule="ArchitectureChallenge" customModuleProvider="target">
+                                                                <rect key="frame" x="0.0" y="0.0" width="100" height="200"/>
+                                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            </view>
                                                         </subviews>
                                                     </view>
+                                                    <constraints>
+                                                        <constraint firstAttribute="trailing" secondItem="IOg-lp-WBG" secondAttribute="trailing" id="BCz-td-CDb"/>
+                                                        <constraint firstItem="IOg-lp-WBG" firstAttribute="leading" secondItem="3he-qc-bQ3" secondAttribute="leading" id="Wqg-dP-auC"/>
+                                                        <constraint firstItem="IOg-lp-WBG" firstAttribute="top" secondItem="3he-qc-bQ3" secondAttribute="top" id="jh9-kr-jXZ"/>
+                                                        <constraint firstAttribute="bottom" secondItem="IOg-lp-WBG" secondAttribute="bottom" id="qGS-wF-fnT"/>
+                                                    </constraints>
                                                     <connections>
-                                                        <outlet property="moviePosterImageView" destination="BQI-FK-Por" id="yNf-7E-MTA"/>
-                                                        <outlet property="movieTitleLabel" destination="iCo-2h-Cyt" id="cgZ-Qp-s5f"/>
-                                                        <outlet property="voteAverageLabel" destination="MPR-ZL-yaf" id="fVU-mq-eHu"/>
+                                                        <outlet property="movieComponent" destination="IOg-lp-WBG" id="RHj-zj-y5j"/>
                                                     </connections>
                                                 </collectionViewCell>
                                             </cells>
                                         </collectionView>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="See all" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kZy-Se-gfb">
+                                            <rect key="frame" x="358" y="5" width="43" height="17"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
                                     </subviews>
+                                    <constraints>
+                                        <constraint firstAttribute="trailing" secondItem="kZy-Se-gfb" secondAttribute="trailing" constant="13" id="SFd-6W-cd1"/>
+                                        <constraint firstItem="kZy-Se-gfb" firstAttribute="top" secondItem="bxz-Wi-Nnz" secondAttribute="top" constant="5" id="xWp-m5-CdR"/>
+                                    </constraints>
                                 </tableViewCellContentView>
                                 <connections>
                                     <outlet property="nowPlayingCollectionView" destination="v2U-E6-LPV" id="6yc-Nw-hGi"/>
@@ -136,11 +136,12 @@
                     <connections>
                         <outlet property="mainTableView" destination="oFV-gr-yrw" id="AaV-n1-ruT"/>
                         <segue destination="3fR-Uw-8ay" kind="show" identifier="movieDetailsSegue" id="JyK-oS-jJl"/>
+                        <segue destination="bje-gE-E6c" kind="show" id="DdX-DL-BDL"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="P8S-Fy-fSg" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="278" y="-710"/>
+            <point key="canvasLocation" x="276.81159420289856" y="-710.49107142857144"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Xd1-ei-mac">
@@ -159,6 +160,21 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mxb-bX-AeT" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-551" y="-710"/>
+        </scene>
+        <!--Now Playing-->
+        <scene sceneID="Kx0-hi-dLk">
+            <objects>
+                <viewController title="Now Playing" id="bje-gE-E6c" customClass="SeeAllController" customModule="ArchitectureChallenge" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="w68-bY-8i1">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="7hE-jx-zyP"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="spj-GT-tUy" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1045" y="-1369"/>
         </scene>
         <!--Movie Details-->
         <scene sceneID="LWR-3L-HPH">

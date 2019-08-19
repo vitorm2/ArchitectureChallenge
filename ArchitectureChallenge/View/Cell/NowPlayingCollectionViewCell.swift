@@ -10,8 +10,6 @@ import UIKit
 
 class NowPlayingCollectionViewCell: UICollectionViewCell {
     
-    @IBOutlet weak var moviePosterImageView: UIImageView!
-    @IBOutlet weak var movieTitleLabel: UILabel!
-    @IBOutlet weak var voteAverageLabel: UILabel!
+    @IBOutlet weak var movieComponent: MovieComponent!
     
 }
