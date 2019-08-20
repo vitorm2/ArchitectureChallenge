@@ -11,7 +11,6 @@ import SDWebImage
 
 class ViewController: UIViewController, ListViewDelegate, HeaderDelegate {
    
-    
     @IBOutlet var mainTableView: UITableView!
     
     var allNowPlaying_moviesToDisplay = [MovieViewData]()
@@ -23,6 +22,9 @@ class ViewController: UIViewController, ListViewDelegate, HeaderDelegate {
     var popular_moviesToDisplay = [MovieViewData]()
     
     private let listViewPresenter = Presenter(movieDBService: MovieDBService())
+    
+    var resultsNavigationController : UINavigationController!
+    var resultsViewController : ResultsViewController!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,27 +39,36 @@ class ViewController: UIViewController, ListViewDelegate, HeaderDelegate {
         listViewPresenter.getFiveNowPlayingMovies()
         listViewPresenter.getPopularMovies()
         
-        setupNavBar()
-        
         let headerXib = UINib(nibName: "HeaderView", bundle: nil)
         mainTableView.register(headerXib, forHeaderFooterViewReuseIdentifier: "HeaderView")
         
         mainTableView.separatorStyle = .none
         
+        resultsNavigationController = UIStoryboard(name: "Results", bundle: nil).instantiateViewController(withIdentifier: "navigationController") as? UINavigationController
+        resultsViewController = resultsNavigationController.topViewController as? ResultsViewController
+        
+        setupNavBar()
+
     }
     
     // Coloca título grande e Search Bar na Navigation Bar
     func setupNavBar() {
         navigationController?.navigationBar.prefersLargeTitles = true
         
-        let searchController = UISearchController(searchResultsController: nil)
+        let searchController = UISearchController(searchResultsController: resultsViewController)
+        searchController.searchResultsUpdater = resultsViewController
+        searchController.obscuresBackgroundDuringPresentation = true
+        
         navigationItem.searchController = searchController
         navigationItem.hidesSearchBarWhenScrolling = false
+        
+        self.definesPresentationContext = true
     }
     
     // O presenter passa para a funcao os filmes buscados
     func setNowPlayingMovies(moviesData: [MovieViewData]){
         allNowPlaying_moviesToDisplay = moviesData
+        resultsViewController.filteredMovies = moviesData
     }
     
     func setPopularMovies(moviesData: [MovieViewData]){
@@ -79,12 +90,9 @@ class ViewController: UIViewController, ListViewDelegate, HeaderDelegate {
         errorNowPlaying = true
     }
     
-    
-    
     func seeAllButtonTouched() {
         self.performSegue(withIdentifier: "segueSeeAll", sender: allNowPlaying_moviesToDisplay)
     }
-    
     
     // O presenter retorna para a funcao o Objeto filme detalhado
     func segueMovieDetails(movie: MovieDetail) {
@@ -243,6 +251,3 @@ extension ViewController : UICollectionViewDelegate, UICollectionViewDataSource 
         listViewPresenter.showMovieDetails(movieId: nowPlaying_moviesToDisplay[indexPath.row].id)
     }
 }
-
-
-

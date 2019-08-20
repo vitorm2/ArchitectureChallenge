@@ -45,6 +45,5 @@ class MovieDetailsController: UIViewController {
             return result + item.name! + aux
         })
     }
-    
-    
+        
 }
