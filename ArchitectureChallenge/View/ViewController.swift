@@ -8,6 +8,7 @@
 
 import UIKit
 import SDWebImage
+import Reachability
 
 class ViewController: UIViewController, ListViewDelegate, HeaderDelegate {
    
@@ -17,7 +18,11 @@ class ViewController: UIViewController, ListViewDelegate, HeaderDelegate {
     var nowPlaying_moviesToDisplay = [MovieViewData]()
     var firstFiveNowPlaying_moviesToDisplay = [MovieViewData]()
     
+    let reachability = Reachability()!
+    
     var errorNowPlaying: Bool = false
+    var errorPopular: Bool = false
+    var internetError: Bool = false
     
     var popular_moviesToDisplay = [MovieViewData]()
     
@@ -31,6 +36,22 @@ class ViewController: UIViewController, ListViewDelegate, HeaderDelegate {
         
         mainTableView.dataSource = self
         mainTableView.delegate = self
+        
+        
+        //---- Verifica a conexao com a internet ------
+        
+        
+        reachability.whenUnreachable = { _ in
+            self.showInternetError()
+        }
+
+        do { try reachability.startNotifier() }
+        catch { print("Unable to start notifier") }
+        
+        
+        //-------------------------------------------
+        
+        
         
         listViewPresenter.setViewDelegate(listViewDelegate: self)
         
@@ -85,10 +106,19 @@ class ViewController: UIViewController, ListViewDelegate, HeaderDelegate {
         }
     }
     
-    func showError(error: ServiceError) {
-        print(error.status_message)
+    func showNowPlayingError(error: ServiceError) {
         errorNowPlaying = true
     }
+    
+    func showPopularError(error: ServiceError) {
+        errorPopular = true
+    }
+    
+    func showInternetError(){
+        internetError = true
+    }
+    
+    
     
     func seeAllButtonTouched() {
         self.performSegue(withIdentifier: "segueSeeAll", sender: allNowPlaying_moviesToDisplay)
@@ -114,31 +144,24 @@ class ViewController: UIViewController, ListViewDelegate, HeaderDelegate {
             }
         }
     }
+    
+    
 
 }
 
 extension ViewController : UITableViewDelegate, UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 2
+        return 3
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        
-        switch section {
-        case 0 : if errorNowPlaying { return 0 } else { return 1 }
-        case 1 : return popular_moviesToDisplay.count
-        default : fatalError("There should be no more sections")
-        }
+        return getNumberOfRowsInSection(sectionNumber: section)
         
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        switch indexPath.section {
-        case 0 : if errorNowPlaying { return 0 } else { return 340 }
-        case 1 : return 140
-        default : fatalError("There should be no more sections")
-        }
+        return getHeightForRowAt(sectionNumber: indexPath.section)
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -177,6 +200,25 @@ extension ViewController : UITableViewDelegate, UITableViewDataSource {
             
             return cell
             
+            
+        case 2 :
+            
+            let cell = tableView.dequeueReusableCell(withIdentifier: "errorCell") as! ErrorCell
+            
+            if internetError {
+                cell.errorViewComponent.errorImage.image = UIImage(named: "InternetError")
+                cell.errorViewComponent.errorTitle.text = "Oops!"
+                cell.errorViewComponent.errorDescription.text = "Looks like you are offline. Please check your  internet connection."
+                
+            } else  if errorPopular && errorNowPlaying {
+                cell.errorViewComponent.errorImage.image = UIImage(named: "CircleError")
+                cell.errorViewComponent.errorTitle.text = "Oops!"
+                cell.errorViewComponent.errorDescription.text = "Looks like an error occurred. Please try again later."
+            }
+            
+            
+            
+            return cell
         default : fatalError("There should be no more sections")
             
         }
@@ -184,32 +226,12 @@ extension ViewController : UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-
-        guard let headerView = tableView.dequeueReusableHeaderFooterView(withIdentifier: "HeaderView") as? HeaderView
-        else { return nil }
-
-                switch section {
-                case 0 :
-                    if errorNowPlaying {
-                        headerView.isHidden = true
-                    } else {
-                        headerView.headerTitle.text = "Now Playing"
-                        headerView.actionButton.setTitle("See all", for: .normal)
-                        headerView.actionButton.isHidden = false
-                        headerView.delegate = self
-                    }
-                case 1 :
-                    headerView.headerTitle.text = "Popular Movies"
-                    headerView.actionButton.isHidden = true
-                default : fatalError("There should be no more sections")
-                }
-        
-        return headerView
+        return getViewHeaderForSection(tableView: tableView,sectionNumber: section)
 
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        if errorNowPlaying && section == 0 {
+        if (errorNowPlaying && section == 0) || (errorPopular && section == 1) {
             return 0
         } else {
             guard let headerView = tableView.dequeueReusableHeaderFooterView(withIdentifier: "HeaderView") as? HeaderView
@@ -221,6 +243,68 @@ extension ViewController : UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         listViewPresenter.showMovieDetails(movieId: popular_moviesToDisplay[indexPath.row].id)
+    }
+    
+    func getNumberOfRowsInSection(sectionNumber: Int) -> Int {
+        switch sectionNumber {
+        case 0 :
+            if errorNowPlaying || internetError { return 0 }
+            else { return 1 }
+        case 1 :
+            if errorPopular || internetError { return 0 }
+            else { return popular_moviesToDisplay.count }
+        case 2 :
+            if (errorPopular && errorNowPlaying) || internetError {
+                return 1
+            } else { return 0 }
+        default : fatalError("There should be no more sections")
+        }
+    }
+    
+    func getHeightForRowAt(sectionNumber: Int) -> CGFloat {
+        switch sectionNumber {
+        case 0 :
+            if errorNowPlaying || internetError { return 0 }
+            else { return 340 }
+        case 1 :
+            if errorPopular || internetError { return 0 }
+            else { return 140 }
+        case 2 :
+            if (errorPopular && errorNowPlaying) || internetError {
+                return 420
+            } else { return 0 }
+        default : fatalError("There should be no more sections")
+        }
+    }
+    
+    func getViewHeaderForSection(tableView: UITableView, sectionNumber: Int) -> UIView? {
+        guard let headerView = tableView.dequeueReusableHeaderFooterView(withIdentifier: "HeaderView") as? HeaderView
+            else { return nil }
+        
+        switch sectionNumber {
+        case 0 :
+            if errorNowPlaying || internetError {
+                headerView.isHidden = true
+            } else {
+                headerView.headerTitle.text = "Now Playing"
+                headerView.actionButton.setTitle("See all", for: .normal)
+                headerView.actionButton.isHidden = false
+                headerView.delegate = self
+            }
+        case 1 :
+            if errorPopular || internetError {
+                headerView.isHidden = true
+            } else {
+                headerView.headerTitle.text = "Popular Movies"
+                headerView.actionButton.isHidden = true
+            }
+        case 2:
+            headerView.isHidden = true
+            
+        default : fatalError("There should be no more sections")
+        }
+        
+        return headerView
     }
     
 }

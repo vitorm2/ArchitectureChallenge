@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ErrorView" customModule="ArchitectureChallenge" customModuleProvider="target">
+            <connections>
+                <outlet property="contentView" destination="iN0-l3-epB" id="zbR-vt-XRq"/>
+                <outlet property="errorDescription" destination="UtT-dg-Em1" id="ea8-Jo-0Ao"/>
+                <outlet property="errorImage" destination="m9i-9H-AhX" id="6Es-RF-qhm"/>
+                <outlet property="errorTitle" destination="Alx-KQ-Nml" id="wi8-ou-hv9"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="380" height="413"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="nGF-du-1a2">
+                    <rect key="frame" x="96" y="549" width="240" height="128"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                </view>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="CircleError" translatesAutoresizingMaskIntoConstraints="NO" id="m9i-9H-AhX">
+                    <rect key="frame" x="95.5" y="25" width="189" height="150"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="150" id="dle-6f-ddW"/>
+                        <constraint firstAttribute="width" constant="189" id="wWe-Sm-0pY"/>
+                    </constraints>
+                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Oops!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Alx-KQ-Nml">
+                    <rect key="frame" x="162" y="195" width="56" height="24"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="24" id="7hI-6K-5Ob"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="20"/>
+                    <color key="textColor" red="0.0039215686274509803" green="0.82352941176470584" blue="0.46666666666666667" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UtT-dg-Em1">
+                    <rect key="frame" x="0.0" y="239" width="380" height="73"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="73" id="ObG-Ce-JDg"/>
+                    </constraints>
+                    <string key="text">Looks like you are offline. 
+Please check your  internet connection.</string>
+                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                    <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bG5-dH-CIS">
+                    <rect key="frame" x="95.5" y="346" width="189" height="47"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="189" id="kWu-pf-5KW"/>
+                        <constraint firstAttribute="height" constant="47" id="wBN-Ai-HHb"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="20"/>
+                    <state key="normal" title="Try again">
+                        <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                    </state>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                            <real key="value" value="1"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                            <color key="value" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                            <real key="value" value="5"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                </button>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="top" secondItem="m9i-9H-AhX" secondAttribute="top" constant="19" id="37f-un-Eer"/>
+                <constraint firstItem="UtT-dg-Em1" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="5RT-23-b9s"/>
+                <constraint firstItem="m9i-9H-AhX" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="7OW-Hz-WT8"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="UtT-dg-Em1" secondAttribute="trailing" id="Hce-F9-TWe"/>
+                <constraint firstItem="Alx-KQ-Nml" firstAttribute="top" secondItem="m9i-9H-AhX" secondAttribute="bottom" constant="20" id="KYM-PU-dDW"/>
+                <constraint firstItem="bG5-dH-CIS" firstAttribute="top" secondItem="UtT-dg-Em1" secondAttribute="bottom" constant="34" id="LnR-Ru-Bxo"/>
+                <constraint firstItem="UtT-dg-Em1" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="MKf-Gp-0uu"/>
+                <constraint firstItem="UtT-dg-Em1" firstAttribute="top" secondItem="Alx-KQ-Nml" secondAttribute="bottom" constant="20" id="Ndh-BL-kdv"/>
+                <constraint firstItem="bG5-dH-CIS" firstAttribute="bottom" secondItem="vUN-kp-3ea" secondAttribute="bottom" constant="14" id="Xte-yI-Yet"/>
+                <constraint firstItem="Alx-KQ-Nml" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="pcu-d4-plv"/>
+                <constraint firstItem="bG5-dH-CIS" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="zVK-lx-xwa"/>
+            </constraints>
+            <nil key="simulatedTopBarMetrics"/>
+            <nil key="simulatedBottomBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <point key="canvasLocation" x="243.47826086956525" y="9.7098214285714288"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="CircleError" width="114" height="114"/>
+    </resources>
+</document>

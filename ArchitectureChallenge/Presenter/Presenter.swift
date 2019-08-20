@@ -15,7 +15,8 @@ protocol ListViewDelegate: NSObjectProtocol  {
     func setPopularMovies(moviesData: [MovieViewData])
     func setFiveNowPlayingMovies(moviesData: [MovieViewData])
     
-    func showError(error: ServiceError)
+    func showNowPlayingError(error: ServiceError)
+    func showPopularError(error: ServiceError)
 }
 
 class Presenter {
@@ -50,7 +51,7 @@ class Presenter {
                 self.listViewDelegate?.setNowPlayingMovies(moviesData: moviesData)
             } else {
                 if let error = error {
-                    self.listViewDelegate?.showError(error: error)
+                    self.listViewDelegate?.showNowPlayingError(error: error)
                 }
             } 
         }
@@ -72,9 +73,15 @@ class Presenter {
                         poster_path: movie.poster_path ?? "",
                         overview: movie.overview ?? ""))
                 }
+                
+                 self.listViewDelegate?.setFiveNowPlayingMovies(moviesData: moviesData)
+            } else {
+                if let error = error {
+                    self.listViewDelegate?.showNowPlayingError(error: error)
+                }
             }
             
-            self.listViewDelegate?.setFiveNowPlayingMovies(moviesData: moviesData)
+           
         }
     }
     
@@ -92,10 +99,13 @@ class Presenter {
                         poster_path: movie.poster_path ?? "",
                         overview: movie.overview ?? ""))
                 }
+                
+                self.listViewDelegate?.setPopularMovies(moviesData: moviesData)
+            } else {
+                if let error = error {
+                    self.listViewDelegate?.showPopularError(error: error)
+                }
             }
-            
-            
-            self.listViewDelegate?.setPopularMovies(moviesData: moviesData)
         }
     }
     

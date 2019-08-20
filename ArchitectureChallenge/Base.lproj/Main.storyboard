@@ -165,6 +165,29 @@
                                     <outlet property="voteAverage" destination="RoN-wq-BCg" id="DaB-RH-9IU"/>
                                 </connections>
                             </tableViewCell>
+                            <tableViewCell clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="errorCell" rowHeight="437" id="4xl-LB-ffZ" customClass="ErrorCell" customModule="ArchitectureChallenge" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="528" width="414" height="437"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="4xl-LB-ffZ" id="KRE-yn-mJG">
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="436.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Sim-rp-GpT" customClass="ErrorView" customModule="ArchitectureChallenge" customModuleProvider="target">
+                                            <rect key="frame" x="60" y="15" width="294" height="406.5"/>
+                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </view>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="Sim-rp-GpT" firstAttribute="top" secondItem="KRE-yn-mJG" secondAttribute="top" constant="15" id="JZl-yj-4zm"/>
+                                        <constraint firstItem="Sim-rp-GpT" firstAttribute="leading" secondItem="KRE-yn-mJG" secondAttribute="leading" constant="60" id="Jtk-9u-f5j"/>
+                                        <constraint firstAttribute="trailing" secondItem="Sim-rp-GpT" secondAttribute="trailing" constant="60" id="n3s-UO-pS0"/>
+                                        <constraint firstAttribute="bottom" secondItem="Sim-rp-GpT" secondAttribute="bottom" constant="15" id="xcg-Er-k2q"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="errorViewComponent" destination="Sim-rp-GpT" id="v6k-ar-pdi"/>
+                                </connections>
+                            </tableViewCell>
                         </prototypes>
                         <sections/>
                         <connections>
@@ -402,6 +425,6 @@
         <image name="Star Icon" width="17" height="17"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="VlO-dX-bmP"/>
+        <segue reference="JyK-oS-jJl"/>
     </inferredMetricsTieBreakers>
 </document>
