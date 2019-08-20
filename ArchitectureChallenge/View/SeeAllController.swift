@@ -9,7 +9,6 @@ import UIKit
 
 class SeeAllController: UIViewController, PresenterSeeAllDelegate{
     
-    @IBOutlet weak var countMoviesLabel: UILabel!
     @IBOutlet var nowPlayingCollectionView: UICollectionView!
     
     private let seeAllPresenter = SeeAllPresenter(movieDBService: MovieDBService())
@@ -24,7 +23,7 @@ class SeeAllController: UIViewController, PresenterSeeAllDelegate{
         
         seeAllPresenter.setViewDelegate(presenterSeeAllDelegate: self)
         
-        updateCountMoviesLabel()
+        navigationItem.largeTitleDisplayMode = .never
     }
     
     func segueMovieDetails(movie: MovieDetail) {
@@ -41,9 +40,6 @@ class SeeAllController: UIViewController, PresenterSeeAllDelegate{
         }
     }
     
-    func updateCountMoviesLabel() {
-        countMoviesLabel.text = "Showing \(nowPlaying_moviesToDisplay.count) results"
-    }
 }
 
 extension SeeAllController: UICollectionViewDelegate, UICollectionViewDataSource {
@@ -68,5 +64,14 @@ extension SeeAllController: UICollectionViewDelegate, UICollectionViewDataSource
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         seeAllPresenter.showMovieDetails(movieId: nowPlaying_moviesToDisplay[indexPath.row].id)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+        if kind == UICollectionView.elementKindSectionHeader {
+            let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "collectionViewHeader", for: indexPath) as! HeaderCollectionReusableView
+            headerView.headerTitle.text = "Showing \(nowPlaying_moviesToDisplay.count) results"
+            return headerView
+        }
+        return UICollectionReusableView()
     }
 }

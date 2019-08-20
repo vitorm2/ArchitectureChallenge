@@ -68,6 +68,8 @@ class ViewController: UIViewController, ListViewDelegate, HeaderDelegate {
         resultsNavigationController = UIStoryboard(name: "Results", bundle: nil).instantiateViewController(withIdentifier: "navigationController") as? UINavigationController
         resultsViewController = resultsNavigationController.topViewController as? ResultsViewController
         
+        // resultsViewController = UIStoryboard(name: "Results", bundle: nil).instantiateViewController(withIdentifier: "searchResultsController") as? ResultsViewController
+        
         setupNavBar()
 
     }
@@ -79,7 +81,7 @@ class ViewController: UIViewController, ListViewDelegate, HeaderDelegate {
         let searchController = UISearchController(searchResultsController: resultsViewController)
         searchController.searchResultsUpdater = resultsViewController
         searchController.obscuresBackgroundDuringPresentation = true
-        
+        searchController.delegate = resultsViewController
         navigationItem.searchController = searchController
         navigationItem.hidesSearchBarWhenScrolling = false
         
@@ -334,4 +336,5 @@ extension ViewController : UICollectionViewDelegate, UICollectionViewDataSource 
         // Diz para o presenter pegar os detalhes de um filme de acordo com o id passado
         listViewPresenter.showMovieDetails(movieId: nowPlaying_moviesToDisplay[indexPath.row].id)
     }
+    
 }

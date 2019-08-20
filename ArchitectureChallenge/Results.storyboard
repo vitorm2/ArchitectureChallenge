@@ -13,7 +13,6 @@
         <!--Navigation Controller-->
         <scene sceneID="wrK-3K-ap3">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="9n2-bd-7K3" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <navigationController storyboardIdentifier="navigationController" id="lmi-mS-aLX" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="qIa-5M-blF">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
@@ -23,13 +22,13 @@
                         <segue destination="eKc-pd-U0U" kind="relationship" relationship="rootViewController" id="QrB-Dk-8Fc"/>
                     </connections>
                 </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="9n2-bd-7K3" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-200" y="-271"/>
         </scene>
         <!--Results View Controller-->
         <scene sceneID="HHi-5W-UgU">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="n02-AO-aiX" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController storyboardIdentifier="searchResultsController" id="eKc-pd-U0U" customClass="ResultsViewController" customModule="ArchitectureChallenge" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Reo-Lc-AwL">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
@@ -98,9 +97,10 @@
                     <navigationItem key="navigationItem" id="QE3-yt-kPd"/>
                     <connections>
                         <outlet property="resultsCollectionView" destination="4DH-sk-swR" id="32Z-SM-IRo"/>
-                        <segue destination="xYd-Eh-r0k" kind="presentation" identifier="movieDetailsSegue" id="Of4-QR-dO7"/>
+                        <segue destination="xYd-Eh-r0k" kind="show" identifier="movieDetailsSegue" id="Of4-QR-dO7"/>
                     </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="n02-AO-aiX" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="625" y="-271"/>
         </scene>
@@ -113,7 +113,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qcD-Wx-wQd">
-                                <rect key="frame" x="0.0" y="44" width="414" height="231"/>
+                                <rect key="frame" x="0.0" y="88" width="414" height="231"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="j2x-QC-aAq">
                                         <rect key="frame" x="21" y="18" width="128" height="194"/>
@@ -184,14 +184,14 @@
                                 </constraints>
                             </view>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="7Qt-qp-md9">
-                                <rect key="frame" x="21" y="304" width="364" height="531"/>
+                                <rect key="frame" x="21" y="348" width="364" height="487"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Overview" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jfa-8h-1Hb">
-                                <rect key="frame" x="21" y="275" width="63" height="17"/>
+                                <rect key="frame" x="21" y="319" width="63" height="17"/>
                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="14"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>

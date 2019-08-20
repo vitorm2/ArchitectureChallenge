@@ -28,7 +28,10 @@ class ResultsViewController: UIViewController {
         
         resultsCollectionView.delegate = self
         resultsCollectionView.dataSource = self
+        
+        if let navCon = navigationController {
 
+        }
     }
 
 }
@@ -37,6 +40,7 @@ extension ResultsViewController : ResultsPresenterDelegate {
     
     func segueMovieDetails(movie: MovieDetail) {
         DispatchQueue.main.async {
+            
             self.performSegue(withIdentifier: "movieDetailsSegue", sender: movie)
         }
     }
@@ -89,7 +93,6 @@ extension ResultsViewController : UICollectionViewDelegate, UICollectionViewData
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         resultsPresenter.showMovieDetails(movieId: filteredMovies[indexPath.row].id)
     }
-    
 }
 
 extension ResultsViewController : UISearchResultsUpdating {
@@ -114,6 +117,14 @@ extension ResultsViewController : UISearchResultsUpdating {
             resultsCollectionView.reloadData()
         }
         
+    }
+    
+}
+
+extension ResultsViewController : UISearchControllerDelegate {
+
+    func didPresentSearchController(_ searchController: UISearchController) {
+        // searchController.nav
     }
     
 }

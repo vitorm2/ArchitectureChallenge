@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5C2F2B9E230C8C77000C587A /* MovieDetailsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C2F2B9C230C8C77000C587A /* MovieDetailsPresenter.swift */; };
+		5C2F2B9F230C8C77000C587A /* ResultsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C2F2B9D230C8C77000C587A /* ResultsPresenter.swift */; };
+		5C2F2BA1230C8C96000C587A /* ResultsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C2F2BA0230C8C96000C587A /* ResultsViewController.swift */; };
+		5C2F2BA3230C8CA9000C587A /* HeaderCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C2F2BA2230C8CA9000C587A /* HeaderCollectionReusableView.swift */; };
+		5C2F2BA5230C8CCB000C587A /* Results.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5C2F2BA4230C8CCB000C587A /* Results.storyboard */; };
 		5C52C88123048E2200C785E5 /* Presenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C52C88023048E2200C785E5 /* Presenter.swift */; };
 		5C52C88323048F1900C785E5 /* MovieDBService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C52C88223048F1900C785E5 /* MovieDBService.swift */; };
 		5CD9700B23072FE600E18E09 /* HeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5CD9700A23072FE600E18E09 /* HeaderView.xib */; };
@@ -36,6 +41,11 @@
 
 /* Begin PBXFileReference section */
 		3E3BD378A47D55A9CA462856 /* Pods_ArchitectureChallenge.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ArchitectureChallenge.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		5C2F2B9C230C8C77000C587A /* MovieDetailsPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MovieDetailsPresenter.swift; sourceTree = "<group>"; };
+		5C2F2B9D230C8C77000C587A /* ResultsPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResultsPresenter.swift; sourceTree = "<group>"; };
+		5C2F2BA0230C8C96000C587A /* ResultsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ResultsViewController.swift; path = ArchitectureChallenge/View/ResultsViewController.swift; sourceTree = SOURCE_ROOT; };
+		5C2F2BA2230C8CA9000C587A /* HeaderCollectionReusableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HeaderCollectionReusableView.swift; path = ArchitectureChallenge/View/Header/HeaderCollectionReusableView.swift; sourceTree = SOURCE_ROOT; };
+		5C2F2BA4230C8CCB000C587A /* Results.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Results.storyboard; sourceTree = "<group>"; };
 		5C52C88023048E2200C785E5 /* Presenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Presenter.swift; sourceTree = "<group>"; };
 		5C52C88223048F1900C785E5 /* MovieDBService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDBService.swift; sourceTree = "<group>"; };
 		5CD9700A23072FE600E18E09 /* HeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HeaderView.xib; sourceTree = "<group>"; };
@@ -105,6 +115,7 @@
 				CFFDF6602304867A00DE01D8 /* ViewController.swift */,
 				CFB3DFF9230B39BF002294D7 /* SeeAllController.swift */,
 				CFFDF676230589FC00DE01D8 /* MovieDetailsController.swift */,
+				5C2F2BA0230C8C96000C587A /* ResultsViewController.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -112,6 +123,8 @@
 		5C52C87C23048D9300C785E5 /* Presenter */ = {
 			isa = PBXGroup;
 			children = (
+				5C2F2B9C230C8C77000C587A /* MovieDetailsPresenter.swift */,
+				5C2F2B9D230C8C77000C587A /* ResultsPresenter.swift */,
 				5C52C88023048E2200C785E5 /* Presenter.swift */,
 				CF26FB98230B2CC500625381 /* SeeAllPresenter.swift */,
 			);
@@ -151,6 +164,7 @@
 		CFB3DFFB230B3AD9002294D7 /* Header */ = {
 			isa = PBXGroup;
 			children = (
+				5C2F2BA2230C8CA9000C587A /* HeaderCollectionReusableView.swift */,
 				5CD97010230741B000E18E09 /* HeaderView.swift */,
 				5CD9700A23072FE600E18E09 /* HeaderView.xib */,
 			);
@@ -194,8 +208,9 @@
 				5C2095A923048D7B00E3277E /* View */,
 				CFFDF65E2304867A00DE01D8 /* AppDelegate.swift */,
 				CFFDF6622304867A00DE01D8 /* Main.storyboard */,
-				CFFDF6652304867C00DE01D8 /* Assets.xcassets */,
 				CFFDF6672304867C00DE01D8 /* LaunchScreen.storyboard */,
+				5C2F2BA4230C8CCB000C587A /* Results.storyboard */,
+				CFFDF6652304867C00DE01D8 /* Assets.xcassets */,
 				CFFDF66A2304867C00DE01D8 /* Info.plist */,
 			);
 			path = ArchitectureChallenge;
@@ -263,6 +278,7 @@
 			files = (
 				CFFDF6692304867C00DE01D8 /* LaunchScreen.storyboard in Resources */,
 				CFB6C17D230B05DE0016B332 /* MovieComponent.xib in Resources */,
+				5C2F2BA5230C8CCB000C587A /* Results.storyboard in Resources */,
 				CFFDF6662304867C00DE01D8 /* Assets.xcassets in Resources */,
 				CF96A4D4230C56D80071A574 /* ErrorView.xib in Resources */,
 				CFFDF6642304867A00DE01D8 /* Main.storyboard in Resources */,
@@ -319,6 +335,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5C2F2B9E230C8C77000C587A /* MovieDetailsPresenter.swift in Sources */,
 				CFFDF6612304867A00DE01D8 /* ViewController.swift in Sources */,
 				CFFDF677230589FC00DE01D8 /* MovieDetailsController.swift in Sources */,
 				CFB6C17F230B09410016B332 /* MovieComponent.swift in Sources */,
@@ -329,11 +346,14 @@
 				5CD9700F2307386F00E18E09 /* NowPlayingTableViewCell.swift in Sources */,
 				CFFDF68C23074CBE00DE01D8 /* Image.swift in Sources */,
 				CFB3DFFD230C2345002294D7 /* ServiceError.swift in Sources */,
+				5C2F2B9F230C8C77000C587A /* ResultsPresenter.swift in Sources */,
+				5C2F2BA3230C8CA9000C587A /* HeaderCollectionReusableView.swift in Sources */,
 				CFB3DFFA230B39BF002294D7 /* SeeAllController.swift in Sources */,
 				5CD97011230741B000E18E09 /* HeaderView.swift in Sources */,
 				CFFDF68A23074BDE00DE01D8 /* PopularMoviesCell.swift in Sources */,
 				CFFDF65F2304867A00DE01D8 /* AppDelegate.swift in Sources */,
 				CF96A4DD230C61230071A574 /* ErrorCell.swift in Sources */,
+				5C2F2BA1230C8C96000C587A /* ResultsViewController.swift in Sources */,
 				CF26FB99230B2CC500625381 /* SeeAllPresenter.swift in Sources */,
 				CFFDF671230492BC00DE01D8 /* Movies.swift in Sources */,
 				CFFDF675230585A800DE01D8 /* NowPlayingCollectionViewCell.swift in Sources */,

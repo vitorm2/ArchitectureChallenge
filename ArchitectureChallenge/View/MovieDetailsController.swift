@@ -20,6 +20,9 @@ class MovieDetailsController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        if let navCon = navigationController {
+            navigationController?.navigationBar.isHidden = false
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -34,6 +37,8 @@ class MovieDetailsController: UIViewController {
         let url = URL(string: imageURL)
         
         movieImage.sd_setImage(with: url, placeholderImage: nil)
+        
+        navigationItem.largeTitleDisplayMode = .never
     }
     
     
@@ -45,5 +50,6 @@ class MovieDetailsController: UIViewController {
             return result + item.name! + aux
         })
     }
+    
         
 }
