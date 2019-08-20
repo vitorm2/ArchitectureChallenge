@@ -233,17 +233,17 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="MFd-Zz-gJ3">
-                                <rect key="frame" x="30" y="142" width="354" height="720"/>
+                                <rect key="frame" x="0.0" y="88" width="414" height="774"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="xSw-Yf-C89">
                                     <size key="itemSize" width="165" height="277"/>
-                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="headerReferenceSize" width="50" height="50"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                    <inset key="sectionInset" minX="30" minY="0.0" maxX="30" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="nowPlayingCell2" id="sLY-uc-iA3" customClass="NowPlayingCollectionViewCell" customModule="ArchitectureChallenge" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="0.0" width="165" height="277"/>
+                                        <rect key="frame" x="30" y="50" width="165" height="277"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
                                             <rect key="frame" x="0.0" y="0.0" width="165" height="277"/>
@@ -269,30 +269,38 @@
                                         </connections>
                                     </collectionViewCell>
                                 </cells>
+                                <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" reuseIdentifier="collectionViewHeader" id="8iB-d2-82Y" customClass="HeaderCollectionReusableView" customModule="ArchitectureChallenge" customModuleProvider="target">
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="50"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Showing 20 results" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0DN-B2-Thn">
+                                            <rect key="frame" x="24" y="15" width="137" height="21"/>
+                                            <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
+                                            <color key="textColor" red="0.59215686274509804" green="0.59215686274509804" blue="0.59215686274509804" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstAttribute="bottomMargin" secondItem="0DN-B2-Thn" secondAttribute="bottom" constant="6" id="9Pr-B7-2uU"/>
+                                        <constraint firstItem="0DN-B2-Thn" firstAttribute="leading" secondItem="8iB-d2-82Y" secondAttribute="leadingMargin" constant="16" id="aqH-o7-KeJ"/>
+                                        <constraint firstItem="0DN-B2-Thn" firstAttribute="top" secondItem="8iB-d2-82Y" secondAttribute="topMargin" constant="7" id="wae-dY-Jg0"/>
+                                    </constraints>
+                                    <connections>
+                                        <outlet property="headerTitle" destination="0DN-B2-Thn" id="QLp-m5-ST8"/>
+                                    </connections>
+                                </collectionReusableView>
                             </collectionView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Showing 20 results" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0DN-B2-Thn">
-                                <rect key="frame" x="35" y="108" width="137" height="18"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="18" id="BWR-aN-KYD"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
-                                <color key="textColor" red="0.59215686274509804" green="0.59215686274509804" blue="0.59215686274509804" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="7hE-jx-zyP" firstAttribute="bottom" secondItem="MFd-Zz-gJ3" secondAttribute="bottom" id="1ni-It-tVE"/>
-                            <constraint firstItem="0DN-B2-Thn" firstAttribute="leading" secondItem="7hE-jx-zyP" secondAttribute="leading" constant="35" id="KhZ-wm-ztP"/>
-                            <constraint firstItem="0DN-B2-Thn" firstAttribute="top" secondItem="7hE-jx-zyP" secondAttribute="top" constant="20" id="PNf-6D-MgU"/>
-                            <constraint firstItem="MFd-Zz-gJ3" firstAttribute="leading" secondItem="7hE-jx-zyP" secondAttribute="leading" constant="30" id="mYl-9r-W5I"/>
-                            <constraint firstItem="7hE-jx-zyP" firstAttribute="trailing" secondItem="MFd-Zz-gJ3" secondAttribute="trailing" constant="30" id="wQW-pX-83Q"/>
-                            <constraint firstItem="MFd-Zz-gJ3" firstAttribute="top" secondItem="0DN-B2-Thn" secondAttribute="bottom" constant="16" id="ytB-6b-OH6"/>
+                            <constraint firstItem="MFd-Zz-gJ3" firstAttribute="top" secondItem="7hE-jx-zyP" secondAttribute="top" id="ERD-yT-LeO"/>
+                            <constraint firstItem="MFd-Zz-gJ3" firstAttribute="leading" secondItem="7hE-jx-zyP" secondAttribute="leading" id="mYl-9r-W5I"/>
+                            <constraint firstItem="7hE-jx-zyP" firstAttribute="trailing" secondItem="MFd-Zz-gJ3" secondAttribute="trailing" id="wQW-pX-83Q"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="7hE-jx-zyP"/>
                     </view>
                     <connections>
-                        <outlet property="countMoviesLabel" destination="0DN-B2-Thn" id="NU0-8L-aSt"/>
                         <outlet property="nowPlayingCollectionView" destination="MFd-Zz-gJ3" id="AMW-qT-hN2"/>
                         <segue destination="3fR-Uw-8ay" kind="show" identifier="segueDetails" id="VlO-dX-bmP"/>
                     </connections>
