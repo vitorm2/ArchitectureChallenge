@@ -8,4 +8,5 @@ target 'ArchitectureChallenge' do
   # Pods for ArchitectureChallenge
 
 	pod 'SDWebImage'
+	pod 'ReachabilitySwift'
 end

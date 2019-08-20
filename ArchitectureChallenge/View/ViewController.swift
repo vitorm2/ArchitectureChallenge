@@ -8,6 +8,7 @@
 
 import UIKit
 import SDWebImage
+import Reachability
 
 class ViewController: UIViewController, ListViewDelegate, HeaderDelegate {
    
@@ -17,6 +18,8 @@ class ViewController: UIViewController, ListViewDelegate, HeaderDelegate {
     var allNowPlaying_moviesToDisplay = [MovieViewData]()
     var nowPlaying_moviesToDisplay = [MovieViewData]()
     var firstFiveNowPlaying_moviesToDisplay = [MovieViewData]()
+    
+    let reachability = Reachability()!
     
     var errorNowPlaying: Bool = false
     var errorPopular: Bool = false
@@ -32,12 +35,30 @@ class ViewController: UIViewController, ListViewDelegate, HeaderDelegate {
         mainTableView.dataSource = self
         mainTableView.delegate = self
         
+        
+        //---- Verifica a conexao com a internet ------
+        
+        
+        reachability.whenUnreachable = { _ in
+            self.showInternetError()
+        }
+
+        do { try reachability.startNotifier() }
+        catch { print("Unable to start notifier") }
+        
+        
+        //-------------------------------------------
+        
+        
+        
         listViewPresenter.setViewDelegate(listViewDelegate: self)
         
         // Diz para o presenter pegar os filmes
         listViewPresenter.getNowPlayingMovies()
         listViewPresenter.getFiveNowPlayingMovies()
         listViewPresenter.getPopularMovies()
+        
+        
         
         setupNavBar()
         
@@ -85,7 +106,7 @@ class ViewController: UIViewController, ListViewDelegate, HeaderDelegate {
     }
     
     func showInternetError(){
-        
+        internetError = true
     }
     
     
