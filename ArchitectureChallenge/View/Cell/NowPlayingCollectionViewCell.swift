@@ -13,3 +13,4 @@ class NowPlayingCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var movieComponent: MovieComponent!
     
 }
+

@@ -13,7 +13,9 @@ protocol ListViewDelegate: NSObjectProtocol  {
     func segueMovieDetails(movie: MovieDetail)
     func setNowPlayingMovies(moviesData: [MovieViewData])
     func setPopularMovies(moviesData: [MovieViewData])
+    func setFiveNowPlayingMovies(moviesData: [MovieViewData])
     
+    func showError(error: ServiceError)
 }
 
 class Presenter {
@@ -25,9 +27,6 @@ class Presenter {
         self.movieDBService = movieDBService
     }
     
-    
-    
-    
     func setViewDelegate(listViewDelegate: ListViewDelegate) {
         self.listViewDelegate = listViewDelegate
     }
@@ -38,16 +37,44 @@ class Presenter {
             
             var moviesData: [MovieViewData] = []
             
-            for movie in movies! {
-                moviesData.append(MovieViewData(
-                    id: movie.id!,
-                    vote_average: movie.vote_average!,
-                    title: movie.title ?? "",
-                    poster_path: movie.poster_path ?? "",
-                    overview: movie.overview ?? ""))
+            if let movies = movies {
+                for movie in movies{
+                    moviesData.append(MovieViewData(
+                        id: movie.id!,
+                        vote_average: movie.vote_average!,
+                        title: movie.title ?? "",
+                        poster_path: movie.poster_path ?? "",
+                        overview: movie.overview ?? ""))
+                }
+                
+                self.listViewDelegate?.setNowPlayingMovies(moviesData: moviesData)
+            } else {
+                if let error = error {
+                    self.listViewDelegate?.showError(error: error)
+                }
+            } 
+        }
+    }
+    
+    func getFiveNowPlayingMovies() {
+        movieDBService.getNowPlayingMovies { (movies, error) in
+            
+            var moviesData: [MovieViewData] = []
+            
+            if let movies = movies {
+                let firstFiveMovies = movies.prefix(5)
+                
+                for movie in firstFiveMovies {
+                    moviesData.append(MovieViewData(
+                        id: movie.id!,
+                        vote_average: movie.vote_average!,
+                        title: movie.title ?? "",
+                        poster_path: movie.poster_path ?? "",
+                        overview: movie.overview ?? ""))
+                }
             }
             
-            self.listViewDelegate?.setNowPlayingMovies(moviesData: moviesData)
+            self.listViewDelegate?.setFiveNowPlayingMovies(moviesData: moviesData)
         }
     }
     
@@ -56,14 +83,17 @@ class Presenter {
             
             var moviesData: [MovieViewData] = []
             
-            for movie in movies! {
-                moviesData.append(MovieViewData(
-                    id: movie.id!,
-                    vote_average: movie.vote_average!,
-                    title: movie.title ?? "",
-                    poster_path: movie.poster_path ?? "",
-                    overview: movie.overview ?? ""))
+            if let movies = movies {
+                for movie in movies {
+                    moviesData.append(MovieViewData(
+                        id: movie.id!,
+                        vote_average: movie.vote_average!,
+                        title: movie.title ?? "",
+                        poster_path: movie.poster_path ?? "",
+                        overview: movie.overview ?? ""))
+                }
             }
+            
             
             self.listViewDelegate?.setPopularMovies(moviesData: moviesData)
         }

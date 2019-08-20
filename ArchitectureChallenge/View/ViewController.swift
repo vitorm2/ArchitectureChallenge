@@ -9,13 +9,17 @@
 import UIKit
 import SDWebImage
 
-public var base_url: String = "https://image.tmdb.org/t/p/w500"
-
-class ViewController: UIViewController, ListViewDelegate {
+class ViewController: UIViewController, ListViewDelegate, HeaderDelegate {
+   
     
     @IBOutlet var mainTableView: UITableView!
     
+    var allNowPlaying_moviesToDisplay = [MovieViewData]()
     var nowPlaying_moviesToDisplay = [MovieViewData]()
+    var firstFiveNowPlaying_moviesToDisplay = [MovieViewData]()
+    
+    var errorNowPlaying: Bool = false
+    
     var popular_moviesToDisplay = [MovieViewData]()
     
     private let listViewPresenter = Presenter(movieDBService: MovieDBService())
@@ -30,6 +34,7 @@ class ViewController: UIViewController, ListViewDelegate {
         
         // Diz para o presenter pegar os filmes
         listViewPresenter.getNowPlayingMovies()
+        listViewPresenter.getFiveNowPlayingMovies()
         listViewPresenter.getPopularMovies()
         
         setupNavBar()
@@ -52,10 +57,7 @@ class ViewController: UIViewController, ListViewDelegate {
     
     // O presenter passa para a funcao os filmes buscados
     func setNowPlayingMovies(moviesData: [MovieViewData]){
-        nowPlaying_moviesToDisplay = moviesData
-        DispatchQueue.main.async {
-            self.mainTableView.reloadData()
-        }
+        allNowPlaying_moviesToDisplay = moviesData
     }
     
     func setPopularMovies(moviesData: [MovieViewData]){
@@ -64,6 +66,25 @@ class ViewController: UIViewController, ListViewDelegate {
             self.mainTableView.reloadData()
         }
     }
+    
+    func setFiveNowPlayingMovies(moviesData: [MovieViewData]) {
+        nowPlaying_moviesToDisplay = moviesData
+        DispatchQueue.main.async {
+            self.mainTableView.reloadData()
+        }
+    }
+    
+    func showError(error: ServiceError) {
+        print(error.status_message)
+        errorNowPlaying = true
+    }
+    
+    
+    
+    func seeAllButtonTouched() {
+        self.performSegue(withIdentifier: "segueSeeAll", sender: allNowPlaying_moviesToDisplay)
+    }
+    
     
     // O presenter retorna para a funcao o Objeto filme detalhado
     func segueMovieDetails(movie: MovieDetail) {
@@ -81,7 +102,7 @@ class ViewController: UIViewController, ListViewDelegate {
         if let movies = sender as? [MovieViewData] {
             if let nextViewController = segue.destination as?
                 SeeAllController {
-//                nextViewController.nowPlaying_moviesToDisplay = movies
+                nextViewController.nowPlaying_moviesToDisplay = movies
             }
         }
     }
@@ -97,7 +118,7 @@ extension ViewController : UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
         switch section {
-        case 0 : return 1
+        case 0 : if errorNowPlaying { return 0 } else { return 1 }
         case 1 : return popular_moviesToDisplay.count
         default : fatalError("There should be no more sections")
         }
@@ -106,8 +127,8 @@ extension ViewController : UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         switch indexPath.section {
-        case 0 : return 260
-        case 1 : return 160
+        case 0 : if errorNowPlaying { return 0 } else { return 340 }
+        case 1 : return 140
         default : fatalError("There should be no more sections")
         }
     }
@@ -124,6 +145,7 @@ extension ViewController : UITableViewDelegate, UITableViewDataSource {
                 cell.nowPlayingCollectionView.reloadData()
                 return cell
             }
+        
             
             return UITableViewCell()
             
@@ -160,9 +182,14 @@ extension ViewController : UITableViewDelegate, UITableViewDataSource {
 
                 switch section {
                 case 0 :
-                    headerView.headerTitle.text = "Now Playing"
-                    headerView.actionButton.setTitle("See all", for: .normal)
-                    headerView.actionButton.isHidden = false
+                    if errorNowPlaying {
+                        headerView.isHidden = true
+                    } else {
+                        headerView.headerTitle.text = "Now Playing"
+                        headerView.actionButton.setTitle("See all", for: .normal)
+                        headerView.actionButton.isHidden = false
+                        headerView.delegate = self
+                    }
                 case 1 :
                     headerView.headerTitle.text = "Popular Movies"
                     headerView.actionButton.isHidden = true
@@ -174,10 +201,18 @@ extension ViewController : UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        guard let headerView = tableView.dequeueReusableHeaderFooterView(withIdentifier: "HeaderView") as? HeaderView
-        else { return 0.0 }
-        
-        return headerView.bounds.height
+        if errorNowPlaying && section == 0 {
+            return 0
+        } else {
+            guard let headerView = tableView.dequeueReusableHeaderFooterView(withIdentifier: "HeaderView") as? HeaderView
+                else { return 0.0 }
+            return headerView.bounds.height
+        }
+    
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        listViewPresenter.showMovieDetails(movieId: popular_moviesToDisplay[indexPath.row].id)
     }
     
 }
@@ -199,7 +234,7 @@ extension ViewController : UICollectionViewDelegate, UICollectionViewDataSource 
         let url = URL(string: imageURL)
 
         cell.movieComponent.movieImage?.sd_setImage(with: url, placeholderImage: nil)
-        
+
         return cell
     }
     

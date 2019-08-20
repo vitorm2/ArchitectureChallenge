@@ -8,20 +8,27 @@
 
 import Foundation
 
+public var base_url: String = "https://image.tmdb.org/t/p/w500"
+
 class MovieDBService {
     
     // Como os metodos de requisicao sao assincronos, é necessário usar uma funcao callback para obter o retorno.
-    func getNowPlayingMovies(callBack: @escaping ([Movie]?, Error?) -> () ) {
+    func getNowPlayingMovies(callBack: @escaping ([Movie]?, ServiceError?) -> () ) {
     
         if let url = URL(string: "https://api.themoviedb.org/3/movie/now_playing?api_key=79bb37b9869aa0ed97dc7a23c93d0829&language=en-US&page=1"){
             let task = URLSession.shared.dataTask(with: url) { (data, request, err) in
                 
-                if let error = err {
-                    callBack(nil, error)
+                if err != nil {
+                    callBack(nil, nil)
                 } else if let dadosRetorno = data {
-                    let moviesResult = try! JSONDecoder().decode(Movies.self, from: dadosRetorno)
-                    let movies = moviesResult.results
+                    if let moviesResult = try? JSONDecoder().decode(Movies.self, from: dadosRetorno) {
+                        let movies = moviesResult.results
                         callBack(movies, nil)
+                    } else {
+                        if let serviceError = try? JSONDecoder().decode(ServiceError.self, from: dadosRetorno) {
+                            callBack(nil, serviceError)
+                        }
+                    }
                 }
             }
             task.resume()
