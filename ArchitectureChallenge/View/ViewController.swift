@@ -56,9 +56,7 @@ class ViewController: UIViewController, ListViewDelegate, HeaderDelegate {
         // Diz para o presenter pegar os filmes
         listViewPresenter.getNowPlayingMovies()
         listViewPresenter.getFiveNowPlayingMovies()
-        listViewPresenter.getPopularMovies()
-        
-        
+        listViewPresenter.getPopularMoviesOrderedByVoteAverage()
         
         setupNavBar()
         
@@ -97,20 +95,13 @@ class ViewController: UIViewController, ListViewDelegate, HeaderDelegate {
         }
     }
     
-    func showNowPlayingError(error: ServiceError) {
-        errorNowPlaying = true
-    }
     
-    func showPopularError(error: ServiceError) {
-        errorPopular = true
-    }
+    func showNowPlayingError(error: ServiceError) { errorNowPlaying = true }
     
-    func showInternetError(){
-        internetError = true
-    }
+    func showPopularError(error: ServiceError) { errorPopular = true }
     
-    
-    
+    func showInternetError(){ internetError = true }
+
     func seeAllButtonTouched() {
         self.performSegue(withIdentifier: "segueSeeAll", sender: allNowPlaying_moviesToDisplay)
     }
@@ -136,8 +127,6 @@ class ViewController: UIViewController, ListViewDelegate, HeaderDelegate {
             }
         }
     }
-    
-    
 
 }
 
@@ -234,7 +223,9 @@ extension ViewController : UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        listViewPresenter.showMovieDetails(movieId: popular_moviesToDisplay[indexPath.row].id)
+        if indexPath.section == 1 {
+            listViewPresenter.showMovieDetails(movieId: popular_moviesToDisplay[indexPath.row].id)
+        }
     }
     
     func getNumberOfRowsInSection(sectionNumber: Int) -> Int {

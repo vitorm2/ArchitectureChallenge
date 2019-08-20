@@ -85,28 +85,78 @@ class Presenter {
         }
     }
     
-    func getPopularMovies() {
-        movieDBService.getPopularMovies { (movies, error) in
+    func getPopularMoviesOrderedByVoteAverage() {
+        
+        movieDBService.getNowPlayingMovies { (movies, error) in
             
-            var moviesData: [MovieViewData] = []
+         
+            let movieIDs = self.createArrayOfMovieIds(movies: movies)
             
-            if let movies = movies {
-                for movie in movies {
-                    moviesData.append(MovieViewData(
-                        id: movie.id!,
-                        vote_average: movie.vote_average!,
-                        title: movie.title ?? "",
-                        poster_path: movie.poster_path ?? "",
-                        overview: movie.overview ?? ""))
-                }
+            self.movieDBService.getPopularMovies { (movies, error) in
                 
-                self.listViewDelegate?.setPopularMovies(moviesData: moviesData)
-            } else {
-                if let error = error {
-                    self.listViewDelegate?.showPopularError(error: error)
+                var moviesData: [MovieViewData] = []
+                
+                if let movies = movies {
+                    for movie in movies {
+                        moviesData.append(MovieViewData(
+                            id: movie.id!,
+                            vote_average: movie.vote_average!,
+                            title: movie.title ?? "",
+                            poster_path: movie.poster_path ?? "",
+                            overview: movie.overview ?? ""))
+                    }
+                    
+                    moviesData = moviesData.sorted(by: { $0.vote_average > $1.vote_average })
+                    
+                    let result = self.removeSameIDMoviesFromList(movieIDs: movieIDs, moviesData: moviesData)
+                    
+                    self.listViewDelegate?.setPopularMovies(moviesData: result)
+                } else {
+                    if let error = error {
+                        self.listViewDelegate?.showPopularError(error: error)
+                    }
                 }
             }
+            
+            
         }
+        
+    
+    }
+    
+    func createArrayOfMovieIds(movies: [Movie]?) -> [Int]{
+        var array_IDs: [Int] = []
+        
+        if let movies = movies {
+            let firstFiveMovies = movies.prefix(5)
+            for movie in firstFiveMovies {
+                array_IDs.append(movie.id!)
+            }
+            return array_IDs
+        }
+        return []
+    }
+    
+    func removeSameIDMoviesFromList(movieIDs: [Int], moviesData: [MovieViewData]) -> [MovieViewData] {
+        
+        // REFATORAR
+        var resultMovieViewData: [MovieViewData] = []
+        var aux: Bool = false
+        
+        for index in 0...moviesData.count-1 {
+            
+            aux = false
+            
+            for id in movieIDs {
+                if moviesData[index].id == id { aux = true }
+            }
+            
+            if !aux {
+                resultMovieViewData.append(moviesData[index])
+            }
+        }
+        
+        return resultMovieViewData
     }
     
     func showMovieDetails(movieId: Int) {
