@@ -7,16 +7,42 @@
 
 import UIKit
 
-class SeeAllController: UIViewController{
+class SeeAllController: UIViewController, PresenterSeeAllDelegate{
     
-   var nowPlaying_moviesToDisplay = [MovieViewData]()
+    @IBOutlet weak var countMoviesLabel: UILabel!
     @IBOutlet var nowPlayingCollectionView: UICollectionView!
+    
+    private let seeAllPresenter = SeeAllPresenter(movieDBService: MovieDBService())
+    
+    var nowPlaying_moviesToDisplay = [MovieViewData]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         nowPlayingCollectionView.delegate = self
         nowPlayingCollectionView.dataSource = self
+        
+        seeAllPresenter.setViewDelegate(presenterSeeAllDelegate: self)
+        
+        updateCountMoviesLabel()
+    }
+    
+    func segueMovieDetails(movie: MovieDetail) {
+        DispatchQueue.main.async {
+            self.performSegue(withIdentifier: "segueDetails", sender: movie)
+        }
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?){
+        if let movie = sender as? MovieDetail {
+            if let nextViewController = segue.destination as? MovieDetailsController {
+                nextViewController.movie = movie
+            }
+        }
+    }
+    
+    func updateCountMoviesLabel() {
+        countMoviesLabel.text = "Showing \(nowPlaying_moviesToDisplay.count) results"
     }
 }
 
@@ -38,5 +64,9 @@ extension SeeAllController: UICollectionViewDelegate, UICollectionViewDataSource
         cell.movieComponent.movieImage?.sd_setImage(with: url, placeholderImage: nil)
         
         return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        seeAllPresenter.showMovieDetails(movieId: nowPlaying_moviesToDisplay[indexPath.row].id)
     }
 }

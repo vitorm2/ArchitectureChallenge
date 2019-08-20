@@ -8,10 +8,16 @@
 
 import UIKit
 
+protocol HeaderDelegate {
+    func seeAllButtonTouched()
+}
+
 class HeaderView : UITableViewHeaderFooterView {
     
     @IBOutlet weak var headerTitle: UILabel!
     @IBOutlet weak var actionButton: UIButton!
+    
+    public var delegate: HeaderDelegate?
     
 //    override init(frame: CGRect) {
 //        super.init(frame: frame)
@@ -33,5 +39,10 @@ class HeaderView : UITableViewHeaderFooterView {
 //        self.contentView.autoresizingMask = [.flexibleHeight, .flexibleWidth]
 //        
 //    }
+    
+    @IBAction func seeAllAction(_ sender: Any) {
+        delegate?.seeAllButtonTouched()
+    }
+    
     
 }

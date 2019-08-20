@@ -8,18 +8,30 @@
 
 import Foundation
 
+protocol PresenterSeeAllDelegate: NSObjectProtocol {
+    func segueMovieDetails(movie: MovieDetail)
+}
+
 class SeeAllPresenter {
     
     private let movieDBService : MovieDBService
-    weak private var listViewDelegate : ListViewDelegate?
+    weak private var presenterSeeAllDelegate : PresenterSeeAllDelegate?
     
     
     init(movieDBService: MovieDBService) {
         self.movieDBService = movieDBService
     }
     
-    func setViewDelegate(listViewDelegate: ListViewDelegate) {
-        self.listViewDelegate = listViewDelegate
+    func setViewDelegate(presenterSeeAllDelegate: PresenterSeeAllDelegate) {
+        self.presenterSeeAllDelegate = presenterSeeAllDelegate
+    }
+    
+    func showMovieDetails(movieId: Int) {
+        movieDBService.getMovieDetails(movieId: movieId) { (movie, error) in
+            if let movie = movie {
+                self.presenterSeeAllDelegate?.segueMovieDetails(movie: movie)
+            }
+        }
     }
 }
 
