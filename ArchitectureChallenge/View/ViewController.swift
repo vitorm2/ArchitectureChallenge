@@ -79,7 +79,7 @@ class ViewController: UIViewController, ListViewDelegate, HeaderDelegate {
     func setupNavBar() {
         navigationController?.navigationBar.prefersLargeTitles = true
         
-        let searchController = UISearchController(searchResultsController: resultsViewController)
+        let searchController = UISearchController(searchResultsController: resultsNavigationController)
         searchController.searchResultsUpdater = resultsViewController
         searchController.obscuresBackgroundDuringPresentation = true
         searchController.delegate = resultsViewController
