@@ -10,7 +10,7 @@ import UIKit
 import SDWebImage
 import Reachability
 
-class ViewController: UIViewController, ListViewDelegate, HeaderDelegate {
+class ViewController: UIViewController, ListViewDelegate, HeaderDelegate{
    
     @IBOutlet var mainTableView: UITableView!
     
@@ -56,7 +56,13 @@ class ViewController: UIViewController, ListViewDelegate, HeaderDelegate {
         listViewPresenter.setViewDelegate(listViewDelegate: self)
         
         // Diz para o presenter pegar os filmes
+        
+        
+        
         listViewPresenter.getNowPlayingMovies()
+        
+        
+        
         listViewPresenter.getFiveNowPlayingMovies()
         listViewPresenter.getPopularMoviesOrderedByVoteAverage()
         
@@ -83,6 +89,7 @@ class ViewController: UIViewController, ListViewDelegate, HeaderDelegate {
         searchController.searchResultsUpdater = resultsViewController
         searchController.obscuresBackgroundDuringPresentation = true
         searchController.delegate = resultsViewController
+        searchController.searchBar.delegate = resultsViewController
         navigationItem.searchController = searchController
         navigationItem.hidesSearchBarWhenScrolling = false
         
@@ -92,10 +99,10 @@ class ViewController: UIViewController, ListViewDelegate, HeaderDelegate {
     // O presenter passa para a funcao os filmes buscados
     func setNowPlayingMovies(moviesData: [MovieViewData]){
         allNowPlaying_moviesToDisplay = moviesData
-        resultsViewController.filteredMovies = moviesData
     }
     
     func setPopularMovies(moviesData: [MovieViewData]){
+        errorPopular = false
         popular_moviesToDisplay = moviesData
         DispatchQueue.main.async {
             self.mainTableView.reloadData()
@@ -103,6 +110,7 @@ class ViewController: UIViewController, ListViewDelegate, HeaderDelegate {
     }
     
     func setFiveNowPlayingMovies(moviesData: [MovieViewData]) {
+        errorNowPlaying = false
         nowPlaying_moviesToDisplay = moviesData
         DispatchQueue.main.async {
             self.mainTableView.reloadData()
@@ -140,8 +148,22 @@ class ViewController: UIViewController, ListViewDelegate, HeaderDelegate {
             }
         }
     }
-
 }
+
+extension ViewController: ErrorDelegate {
+    func tryAgainButtonTouched() {
+        if errorPopular {
+            listViewPresenter.getPopularMoviesOrderedByVoteAverage()
+        }
+        
+        if errorNowPlaying {
+            listViewPresenter.getNowPlayingMovies()
+        }
+    }
+    
+    
+}
+
 
 extension ViewController : UITableViewDelegate, UITableViewDataSource {
     

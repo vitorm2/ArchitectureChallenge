@@ -84,18 +84,42 @@
                                     </connections>
                                 </collectionReusableView>
                             </collectionView>
+                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="f8G-VI-vvs">
+                                <rect key="frame" x="0.0" y="88" width="414" height="774"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bHP-eT-sF4" customClass="ErrorView" customModule="ArchitectureChallenge" customModuleProvider="target">
+                                        <rect key="frame" x="60" y="184" width="294" height="406"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="406" id="CCn-2N-yp3"/>
+                                            <constraint firstAttribute="width" constant="294" id="tdJ-Kf-rV6"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="bHP-eT-sF4" firstAttribute="centerX" secondItem="f8G-VI-vvs" secondAttribute="centerX" id="G6d-WE-kNe"/>
+                                    <constraint firstItem="bHP-eT-sF4" firstAttribute="centerY" secondItem="f8G-VI-vvs" secondAttribute="centerY" id="mw6-9F-0oe"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="4DH-sk-swR" firstAttribute="bottom" secondItem="In2-cy-f4D" secondAttribute="bottom" id="3je-Zp-WuV"/>
+                            <constraint firstItem="f8G-VI-vvs" firstAttribute="leading" secondItem="In2-cy-f4D" secondAttribute="leading" id="CPo-KR-gZL"/>
                             <constraint firstItem="4DH-sk-swR" firstAttribute="leading" secondItem="In2-cy-f4D" secondAttribute="leading" id="NSh-AX-wBu"/>
                             <constraint firstItem="4DH-sk-swR" firstAttribute="top" secondItem="In2-cy-f4D" secondAttribute="top" id="RrR-n5-g7r"/>
                             <constraint firstItem="4DH-sk-swR" firstAttribute="trailing" secondItem="In2-cy-f4D" secondAttribute="trailing" id="eoq-ET-RQW"/>
+                            <constraint firstItem="f8G-VI-vvs" firstAttribute="top" secondItem="In2-cy-f4D" secondAttribute="top" id="iRB-9U-hhG"/>
+                            <constraint firstItem="In2-cy-f4D" firstAttribute="trailing" secondItem="f8G-VI-vvs" secondAttribute="trailing" id="pn3-g4-l9W"/>
+                            <constraint firstItem="In2-cy-f4D" firstAttribute="bottom" secondItem="f8G-VI-vvs" secondAttribute="bottom" id="zmv-jS-BMx"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="In2-cy-f4D"/>
                     </view>
                     <navigationItem key="navigationItem" id="QE3-yt-kPd"/>
                     <connections>
+                        <outlet property="errorLayoutView" destination="f8G-VI-vvs" id="wx4-CA-9sE"/>
+                        <outlet property="errorView" destination="bHP-eT-sF4" id="8eP-my-jw8"/>
                         <outlet property="resultsCollectionView" destination="4DH-sk-swR" id="32Z-SM-IRo"/>
                         <segue destination="xYd-Eh-r0k" kind="show" identifier="movieDetailsSegue" id="Of4-QR-dO7"/>
                     </connections>

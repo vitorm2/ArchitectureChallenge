@@ -8,6 +8,11 @@
 
 import UIKit
 
+
+protocol ErrorDelegate {
+    func tryAgainButtonTouched()
+}
+
 class ErrorView: UIView {
     
     @IBOutlet var contentView: UIView!
@@ -15,6 +20,9 @@ class ErrorView: UIView {
     @IBOutlet weak var errorImage: UIImageView!
     @IBOutlet weak var errorTitle: UILabel!
     @IBOutlet weak var errorDescription: UILabel!
+    @IBOutlet weak var errorButton: UIButton!
+    
+    var delegate: ErrorDelegate?
     
     
     override init(frame: CGRect) {
@@ -33,4 +41,7 @@ class ErrorView: UIView {
         contentView.frame = self.bounds
     }
     
+    @IBAction func tryAgainAction(_ sender: Any) {
+        delegate?.tryAgainButtonTouched()
+    }
 }
