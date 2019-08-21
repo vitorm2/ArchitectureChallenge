@@ -13,6 +13,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ErrorView" customModule="ArchitectureChallenge" customModuleProvider="target">
             <connections>
                 <outlet property="contentView" destination="iN0-l3-epB" id="zbR-vt-XRq"/>
+                <outlet property="errorButton" destination="bG5-dH-CIS" id="gc1-My-Ptp"/>
                 <outlet property="errorDescription" destination="UtT-dg-Em1" id="ea8-Jo-0Ao"/>
                 <outlet property="errorImage" destination="m9i-9H-AhX" id="6Es-RF-qhm"/>
                 <outlet property="errorTitle" destination="Alx-KQ-Nml" id="wi8-ou-hv9"/>
@@ -44,7 +45,7 @@
                     <color key="textColor" red="0.0039215686274509803" green="0.82352941176470584" blue="0.46666666666666667" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UtT-dg-Em1">
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UtT-dg-Em1">
                     <rect key="frame" x="0.0" y="239" width="380" height="73"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="73" id="ObG-Ce-JDg"/>
@@ -76,6 +77,9 @@ Please check your  internet connection.</string>
                             <real key="value" value="5"/>
                         </userDefinedRuntimeAttribute>
                     </userDefinedRuntimeAttributes>
+                    <connections>
+                        <action selector="tryAgainButtonPressed:" destination="-1" eventType="touchUpInside" id="J40-ok-gax"/>
+                    </connections>
                 </button>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

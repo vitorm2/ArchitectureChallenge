@@ -113,8 +113,8 @@
 				CF26FB97230B222F00625381 /* MovieComponent */,
 				CFB6C177230850B90016B332 /* Cell */,
 				CFFDF6602304867A00DE01D8 /* ViewController.swift */,
-				CFB3DFF9230B39BF002294D7 /* SeeAllController.swift */,
 				CFFDF676230589FC00DE01D8 /* MovieDetailsController.swift */,
+				CFB3DFF9230B39BF002294D7 /* SeeAllController.swift */,
 				5C2F2BA0230C8C96000C587A /* ResultsViewController.swift */,
 			);
 			path = View;
@@ -123,10 +123,10 @@
 		5C52C87C23048D9300C785E5 /* Presenter */ = {
 			isa = PBXGroup;
 			children = (
-				5C2F2B9C230C8C77000C587A /* MovieDetailsPresenter.swift */,
-				5C2F2B9D230C8C77000C587A /* ResultsPresenter.swift */,
 				5C52C88023048E2200C785E5 /* Presenter.swift */,
+				5C2F2B9C230C8C77000C587A /* MovieDetailsPresenter.swift */,
 				CF26FB98230B2CC500625381 /* SeeAllPresenter.swift */,
+				5C2F2B9D230C8C77000C587A /* ResultsPresenter.swift */,
 			);
 			path = Presenter;
 			sourceTree = "<group>";
@@ -208,8 +208,8 @@
 				5C2095A923048D7B00E3277E /* View */,
 				CFFDF65E2304867A00DE01D8 /* AppDelegate.swift */,
 				CFFDF6622304867A00DE01D8 /* Main.storyboard */,
-				CFFDF6672304867C00DE01D8 /* LaunchScreen.storyboard */,
 				5C2F2BA4230C8CCB000C587A /* Results.storyboard */,
+				CFFDF6672304867C00DE01D8 /* LaunchScreen.storyboard */,
 				CFFDF6652304867C00DE01D8 /* Assets.xcassets */,
 				CFFDF66A2304867C00DE01D8 /* Info.plist */,
 			);
