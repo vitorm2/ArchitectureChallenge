@@ -12,13 +12,7 @@ public var base_url: String = "https://image.tmdb.org/t/p/w500"
 
 class MovieDBService {
     
-    // Como os metodos de requisicao sao assincronos, é necessário usar uma funcao callback para obter o retorno.
-    
-    
-    
-    
-    
-    
+    // Como os metodos de requisicao sao assincronos, é necessário usar uma funcao callback para obter o retorno.    
     func getNowPlayingMovies(callBack: @escaping ([Movie]?, ServiceError?) -> () ) {
     
         if let url = URL(string: "https://api.themoviedb.org/3/movie/now_playing?api_key=79bb37b9869aa0ed97dc7a23c93d0829&language=en-US&page=1"){
@@ -40,10 +34,6 @@ class MovieDBService {
             task.resume()
         }
     }
-    
-    
-    
-    
     
     func getPopularMovies(callBack: @escaping ([Movie]?, ServiceError?) -> () ) {
         

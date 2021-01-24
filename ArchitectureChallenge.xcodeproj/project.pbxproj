@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		5C2F2B9E230C8C77000C587A /* MovieDetailsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C2F2B9C230C8C77000C587A /* MovieDetailsPresenter.swift */; };
 		5C2F2B9F230C8C77000C587A /* ResultsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C2F2B9D230C8C77000C587A /* ResultsPresenter.swift */; };
 		5C2F2BA1230C8C96000C587A /* ResultsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C2F2BA0230C8C96000C587A /* ResultsViewController.swift */; };
 		5C2F2BA3230C8CA9000C587A /* HeaderCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C2F2BA2230C8CA9000C587A /* HeaderCollectionReusableView.swift */; };
@@ -41,7 +40,6 @@
 
 /* Begin PBXFileReference section */
 		3E3BD378A47D55A9CA462856 /* Pods_ArchitectureChallenge.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ArchitectureChallenge.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		5C2F2B9C230C8C77000C587A /* MovieDetailsPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MovieDetailsPresenter.swift; sourceTree = "<group>"; };
 		5C2F2B9D230C8C77000C587A /* ResultsPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResultsPresenter.swift; sourceTree = "<group>"; };
 		5C2F2BA0230C8C96000C587A /* ResultsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ResultsViewController.swift; path = ArchitectureChallenge/View/ResultsViewController.swift; sourceTree = SOURCE_ROOT; };
 		5C2F2BA2230C8CA9000C587A /* HeaderCollectionReusableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HeaderCollectionReusableView.swift; path = ArchitectureChallenge/View/Header/HeaderCollectionReusableView.swift; sourceTree = SOURCE_ROOT; };
@@ -124,7 +122,6 @@
 			isa = PBXGroup;
 			children = (
 				5C52C88023048E2200C785E5 /* Presenter.swift */,
-				5C2F2B9C230C8C77000C587A /* MovieDetailsPresenter.swift */,
 				CF26FB98230B2CC500625381 /* SeeAllPresenter.swift */,
 				5C2F2B9D230C8C77000C587A /* ResultsPresenter.swift */,
 			);
@@ -134,8 +131,8 @@
 		5C52C87D23048D9C00C785E5 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				CFFDF68B23074CBE00DE01D8 /* Image.swift */,
 				5C52C88223048F1900C785E5 /* MovieDBService.swift */,
+				CFFDF68B23074CBE00DE01D8 /* Image.swift */,
 				CFFDF670230492BC00DE01D8 /* Movies.swift */,
 				CFFDF67223049F1800DE01D8 /* MovieDetail.swift */,
 				CFB3DFFC230C2345002294D7 /* ServiceError.swift */,
@@ -335,7 +332,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5C2F2B9E230C8C77000C587A /* MovieDetailsPresenter.swift in Sources */,
 				CFFDF6612304867A00DE01D8 /* ViewController.swift in Sources */,
 				CFFDF677230589FC00DE01D8 /* MovieDetailsController.swift in Sources */,
 				CFB6C17F230B09410016B332 /* MovieComponent.swift in Sources */,

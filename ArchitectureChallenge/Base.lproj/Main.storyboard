@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Uah-MA-MRQ">
-    <device id="retina6_1" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Uah-MA-MRQ">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17125"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -23,11 +21,11 @@
                                 <rect key="frame" x="0.0" y="28" width="414" height="360"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="wjn-fi-W8v" id="bxz-Wi-Nnz">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="359.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="360"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="v2U-E6-LPV">
-                                            <rect key="frame" x="20" y="11" width="374" height="318"/>
+                                            <rect key="frame" x="20" y="11" width="374" height="318.5"/>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="rtI-bO-fp1">
                                                 <size key="itemSize" width="152" height="277"/>
@@ -37,7 +35,7 @@
                                             </collectionViewFlowLayout>
                                             <cells>
                                                 <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="nowPlayingCell" id="3he-qc-bQ3" customClass="NowPlayingCollectionViewCell" customModule="ArchitectureChallenge" customModuleProvider="target">
-                                                    <rect key="frame" x="0.0" y="20.5" width="152" height="277"/>
+                                                    <rect key="frame" x="0.0" y="21" width="152" height="277"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
                                                         <rect key="frame" x="0.0" y="0.0" width="152" height="277"/>
@@ -62,7 +60,7 @@
                                             </cells>
                                         </collectionView>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5hR-7G-wD0">
-                                            <rect key="frame" x="25" y="344" width="364" height="0.5"/>
+                                            <rect key="frame" x="25" y="344.5" width="364" height="0.5"/>
                                             <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="0.5" id="6YS-td-RUA"/>
@@ -79,6 +77,7 @@
                                         <constraint firstItem="5hR-7G-wD0" firstAttribute="leading" secondItem="bxz-Wi-Nnz" secondAttribute="leading" constant="25" id="xI6-WZ-OVB"/>
                                     </constraints>
                                 </tableViewCellContentView>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <connections>
                                     <outlet property="nowPlayingCollectionView" destination="v2U-E6-LPV" id="6yc-Nw-hGi"/>
                                 </connections>
@@ -87,7 +86,7 @@
                                 <rect key="frame" x="0.0" y="388" width="414" height="140"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="hOD-Iz-2xy" id="Ihu-lT-hpR">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="139.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="140"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="krl-qr-oy4">
@@ -108,7 +107,6 @@
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="u2E-EA-a9h">
                                                     <rect key="frame" x="0.0" y="0.0" width="266.5" height="17"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                    <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Peter Parker and his friends go on a summer trip to Europe. However, they will hardly be able to rest - Peter will have to..." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="In8-hz-w7E">
@@ -131,7 +129,7 @@
                                                             </constraints>
                                                         </imageView>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="10.0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RoN-wq-BCg">
-                                                            <rect key="frame" x="18" y="0.0" width="23.5" height="14.5"/>
+                                                            <rect key="frame" x="18" y="0.5" width="23.5" height="14.5"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                             <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <nil key="highlightedColor"/>
@@ -158,6 +156,7 @@
                                         <constraint firstAttribute="trailingMargin" secondItem="5zG-7q-TtC" secondAttribute="trailing" constant="15" id="ybM-jx-e1t"/>
                                     </constraints>
                                 </tableViewCellContentView>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <connections>
                                     <outlet property="movieDescription" destination="In8-hz-w7E" id="CLm-21-05t"/>
                                     <outlet property="moviePoster" destination="krl-qr-oy4" id="kYu-Pf-Kd3"/>
@@ -169,11 +168,11 @@
                                 <rect key="frame" x="0.0" y="528" width="414" height="437"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="4xl-LB-ffZ" id="KRE-yn-mJG">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="436.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="437"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Sim-rp-GpT" customClass="ErrorView" customModule="ArchitectureChallenge" customModuleProvider="target">
-                                            <rect key="frame" x="60" y="15" width="294" height="406.5"/>
+                                            <rect key="frame" x="60" y="15" width="294" height="407"/>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </view>
                                     </subviews>
@@ -184,6 +183,7 @@
                                         <constraint firstAttribute="bottom" secondItem="Sim-rp-GpT" secondAttribute="bottom" constant="15" id="xcg-Er-k2q"/>
                                     </constraints>
                                 </tableViewCellContentView>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <connections>
                                     <outlet property="errorViewComponent" destination="Sim-rp-GpT" id="v6k-ar-pdi"/>
                                 </connections>
@@ -239,11 +239,11 @@
                                     <size key="itemSize" width="165" height="277"/>
                                     <size key="headerReferenceSize" width="50" height="50"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                                    <inset key="sectionInset" minX="30" minY="0.0" maxX="30" maxY="0.0"/>
+                                    <inset key="sectionInset" minX="35" minY="0.0" maxX="30" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="nowPlayingCell2" id="sLY-uc-iA3" customClass="NowPlayingCollectionViewCell" customModule="ArchitectureChallenge" customModuleProvider="target">
-                                        <rect key="frame" x="30" y="50" width="165" height="277"/>
+                                        <rect key="frame" x="35" y="50" width="165" height="277"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
                                             <rect key="frame" x="0.0" y="0.0" width="165" height="277"/>
@@ -291,6 +291,7 @@
                                 </collectionReusableView>
                             </collectionView>
                         </subviews>
+                        <viewLayoutGuide key="safeArea" id="7hE-jx-zyP"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="7hE-jx-zyP" firstAttribute="bottom" secondItem="MFd-Zz-gJ3" secondAttribute="bottom" id="1ni-It-tVE"/>
@@ -298,7 +299,6 @@
                             <constraint firstItem="MFd-Zz-gJ3" firstAttribute="leading" secondItem="7hE-jx-zyP" secondAttribute="leading" id="mYl-9r-W5I"/>
                             <constraint firstItem="7hE-jx-zyP" firstAttribute="trailing" secondItem="MFd-Zz-gJ3" secondAttribute="trailing" id="wQW-pX-83Q"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="7hE-jx-zyP"/>
                     </view>
                     <connections>
                         <outlet property="nowPlayingCollectionView" destination="MFd-Zz-gJ3" id="AMW-qT-hN2"/>
@@ -402,6 +402,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
+                        <viewLayoutGuide key="safeArea" id="xva-1r-0sI"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="xva-1r-0sI" firstAttribute="trailing" secondItem="473-la-Q0T" secondAttribute="trailing" constant="29" id="4EJ-Za-gwd"/>
@@ -414,7 +415,6 @@
                             <constraint firstItem="KDn-qk-3o5" firstAttribute="leading" secondItem="xva-1r-0sI" secondAttribute="leading" id="nbI-Nh-uZ3"/>
                             <constraint firstItem="473-la-Q0T" firstAttribute="top" secondItem="kIe-oO-ZbH" secondAttribute="bottom" constant="12" id="t6z-gL-O5k"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="xva-1r-0sI"/>
                     </view>
                     <connections>
                         <outlet property="movieGenres" destination="lzo-cp-NuR" id="Brl-nW-VQM"/>
@@ -429,10 +429,10 @@
             <point key="canvasLocation" x="1046" y="-710"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="JyK-oS-jJl"/>
+    </inferredMetricsTieBreakers>
     <resources>
         <image name="Star Icon" width="17" height="17"/>
     </resources>
-    <inferredMetricsTieBreakers>
-        <segue reference="VlO-dX-bmP"/>
-    </inferredMetricsTieBreakers>
 </document>

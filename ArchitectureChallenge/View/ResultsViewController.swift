@@ -31,11 +31,6 @@ class ResultsViewController: UIViewController {
         resultsCollectionView.delegate = self
         resultsCollectionView.dataSource = self
         
-        
-        
-        if let navCon = navigationController {
-
-        }
     }
     
    

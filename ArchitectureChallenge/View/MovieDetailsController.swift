@@ -17,6 +17,8 @@ class MovieDetailsController: UIViewController {
     @IBOutlet weak var movieGenres: UILabel!
     @IBOutlet weak var movieOverview: UITextView!
     @IBOutlet weak var movieVotesNumber: UILabel!
+//
+//    var closure: (() -> Void)?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -39,12 +41,20 @@ class MovieDetailsController: UIViewController {
         movieImage.sd_setImage(with: url, placeholderImage: nil)
         
         navigationItem.largeTitleDisplayMode = .never
+        
+        
+//        closure = {
+//            print(self)
+//        }
     }
     
     
     func getMovieGenresString (genres: [Genres]) -> String{
         return genres.reduce("", { (result: String, item: Genres) -> String in
             var aux: String = ""
+            
+            print(self)
+            
             if genres.last?.id != item.id {aux = ", "}
             
             return result + item.name! + aux

@@ -36,49 +36,32 @@ class ViewController: UIViewController, ListViewDelegate, HeaderDelegate{
         
         mainTableView.dataSource = self
         mainTableView.delegate = self
-        
-        
+
         //---- Verifica a conexao com a internet ------
-        
-        
         reachability.whenUnreachable = { _ in
             self.showInternetError()
         }
 
         do { try reachability.startNotifier() }
         catch { print("Unable to start notifier") }
-        
-        
         //-------------------------------------------
-        
-        
         
         listViewPresenter.setViewDelegate(listViewDelegate: self)
         
         // Diz para o presenter pegar os filmes
-        
-        
-        
         listViewPresenter.getNowPlayingMovies()
-        
-        
-        
         listViewPresenter.getFiveNowPlayingMovies()
         listViewPresenter.getPopularMoviesOrderedByVoteAverage()
         
         
         let headerXib = UINib(nibName: "HeaderView", bundle: nil)
         mainTableView.register(headerXib, forHeaderFooterViewReuseIdentifier: "HeaderView")
-        
         mainTableView.separatorStyle = .none
         
         resultsNavigationController = UIStoryboard(name: "Results", bundle: nil).instantiateViewController(withIdentifier: "navigationController") as? UINavigationController
         resultsViewController = resultsNavigationController.topViewController as? ResultsViewController
         
-        // resultsViewController = UIStoryboard(name: "Results", bundle: nil).instantiateViewController(withIdentifier: "searchResultsController") as? ResultsViewController
-        
         setupNavBar()
-
     }
     
     // Coloca título grande e Search Bar na Navigation Bar
@@ -160,8 +143,6 @@ extension ViewController: ErrorDelegate {
             listViewPresenter.getNowPlayingMovies()
         }
     }
-    
-    
 }
 
 
@@ -193,7 +174,6 @@ extension ViewController : UITableViewDelegate, UITableViewDataSource {
                 return cell
             }
         
-            
             return UITableViewCell()
             
         case 1 :

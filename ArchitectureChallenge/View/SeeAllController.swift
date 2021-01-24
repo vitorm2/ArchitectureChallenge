@@ -7,7 +7,7 @@
 
 import UIKit
 
-class SeeAllController: UIViewController, PresenterSeeAllDelegate{
+class SeeAllController: UIViewController, PresenterSeeAllDelegate {
     
     @IBOutlet var nowPlayingCollectionView: UICollectionView!
     
@@ -73,5 +73,11 @@ extension SeeAllController: UICollectionViewDelegate, UICollectionViewDataSource
             return headerView
         }
         return UICollectionReusableView()
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        if (indexPath.row == nowPlaying_moviesToDisplay.count - 1 ) { //it's your last cell
+            print("FIM")
+        }
     }
 }
